@@ -16,11 +16,11 @@
 <script src="./km-routes.js"></script>
 <script>if(!window.KMROUTES){var kr=document.createElement('script');kr.src='/km-routes.js';document.head.appendChild(kr);}</script>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,401,500,501,600,601,700,701&f[]=chillax@200,300,400,500,600,700&display=swap" rel="stylesheet">
-<script src="./km-api.js?v=4"></script>
+<script src="./km-api.js?v=5"></script>
 <script src="./km-auth.js"></script>
 <script>/* deploy safety: relative paths break on nested routes — retry from site root */
 (function(){var n=0,d=function(){if(!n&&window.KMAPI&&window.KMAUTH)window.dispatchEvent(new Event('kmapi-ready'));};
-if(!window.KMAPI){n++;var a=document.createElement('script');a.src='/km-api.js?v=4';a.onload=function(){n--;d();};document.head.appendChild(a);}
+if(!window.KMAPI){n++;var a=document.createElement('script');a.src='/km-api.js?v=5';a.onload=function(){n--;d();};document.head.appendChild(a);}
 if(!window.KMAUTH){n++;var b=document.createElement('script');b.src='/km-auth.js';b.onload=function(){n--;d();};document.head.appendChild(b);}})();</script>
 <style>
 html{scroll-behavior:smooth}
@@ -305,6 +305,19 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)!
                   <span style="font-size:13px;font-weight:500;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ heroLabel }}</span>
                 </label>
                 <div style="height:3px;background:#0d0d0d;display:{{ heroBarShow }}"><div style="height:100%;width:{{ heroPct }};background:var(--accent);transition:width 0.12s linear"></div></div>
+                <sc-if value="{{ heroCropShow }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;gap:7px">
+                    <div onPointerDown="{{ heroFocusDown }}" onPointerMove="{{ heroFocusMove }}" onPointerUp="{{ heroFocusUp }}" onPointerCancel="{{ heroFocusUp }}" role="img" aria-label="Hero crop preview. Drag to set the focal point." style="position:relative;width:100%;aspect-ratio:21/10;background:#0d0d0d;background-image:url({{ heroThumb }});background-size:cover;background-repeat:no-repeat;background-position:{{ heroFocus }};border:1px solid var(--line);cursor:crosshair;touch-action:none;overflow:hidden">
+                      <div aria-hidden="true" style="position:absolute;left:{{ heroFocusX }};top:0;bottom:0;width:1px;background:rgba(241,239,231,0.35)"></div>
+                      <div aria-hidden="true" style="position:absolute;top:{{ heroFocusY }};left:0;right:0;height:1px;background:rgba(241,239,231,0.35)"></div>
+                      <div aria-hidden="true" style="position:absolute;left:{{ heroFocusX }};top:{{ heroFocusY }};width:14px;height:14px;margin:-7px 0 0 -7px;border:2px solid var(--accent);border-radius:50%;background:rgba(0,0,0,0.25)"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+                      <span style="font-size:11px;color:var(--mut);line-height:1.5">{{ heroCropNote }}</span>
+                      <button onClick="{{ heroFocusReset }}" type="button" style="flex:0 0 auto;font-family:inherit;background:transparent;border:1px solid var(--line);color:var(--mut);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;cursor:pointer" style-hover="color:var(--fg);border-color:var(--fg)">Center</button>
+                    </div>
+                  </div>
+                </sc-if>
               </div>
               <label style="display:flex;flex-direction:column;gap:8px">
                 <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--mut)">Accent fill · hover sweep</span>
@@ -323,7 +336,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)!
             <span style="font-family:'Chillax',sans-serif;font-size:12px;letter-spacing:0.16em;color:var(--mut)">// 02 IDENTITY</span>
             <div data-r="row2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
               <div style="display:flex;flex-direction:column;gap:8px">
-                <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--mut)">Hero image · 21:10</span>
+                <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--mut)">Hero image · any ratio</span>
                 <label style="display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);padding:9px 12px;cursor:pointer;transition:border-color 0.25s ease" style-hover="border-color:var(--accent)">
                   <input type="file" accept="image/*" data-key="hero" onChange="{{ assetFile }}" style="display:none">
                   <span style="width:46px;height:34px;background:#0d0d0d;background-image:url({{ heroThumb }});background-size:cover;background-position:center;background-repeat:no-repeat;border:1px solid var(--line);overflow:hidden;flex:0 0 auto"></span>
@@ -362,12 +375,25 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)!
                 </label>
               </div>
               <div style="display:flex;flex-direction:column;gap:8px">
-                <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--mut)">Card image · 4:5 portrait</span>
+                <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--mut)">Card image · 2:3 portrait</span>
                 <label style="display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);padding:9px 12px;cursor:pointer;transition:border-color 0.25s ease" style-hover="border-color:var(--accent)">
                   <input type="file" accept="image/*" data-key="card" onChange="{{ assetFile }}" style="display:none">
                   <span style="width:46px;height:34px;background:#0d0d0d;background-image:url({{ cardThumb }});background-size:cover;background-position:center;background-repeat:no-repeat;border:1px solid var(--line);overflow:hidden;flex:0 0 auto"></span>
                   <span style="font-size:13px;font-weight:500;color:{{ cardLabelFg }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ cardLabel }}</span>
                 </label>
+                <sc-if value="{{ cardCropShow }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;gap:7px">
+                    <div onPointerDown="{{ cardFocusDown }}" onPointerMove="{{ cardFocusMove }}" onPointerUp="{{ cardFocusUp }}" onPointerCancel="{{ cardFocusUp }}" role="img" aria-label="Card crop preview. Drag to set the focal point." style="position:relative;width:100%;max-width:180px;aspect-ratio:{{ cardCropRatio }};background:#0d0d0d;background-image:url({{ cardThumb }});background-size:cover;background-repeat:no-repeat;background-position:{{ cardFocus }};border:1px solid var(--line);cursor:crosshair;touch-action:none;overflow:hidden">
+                      <div aria-hidden="true" style="position:absolute;left:{{ cardFocusX }};top:0;bottom:0;width:1px;background:rgba(241,239,231,0.35)"></div>
+                      <div aria-hidden="true" style="position:absolute;top:{{ cardFocusY }};left:0;right:0;height:1px;background:rgba(241,239,231,0.35)"></div>
+                      <div aria-hidden="true" style="position:absolute;left:{{ cardFocusX }};top:{{ cardFocusY }};width:14px;height:14px;margin:-7px 0 0 -7px;border:2px solid var(--accent);border-radius:50%;background:rgba(0,0,0,0.25)"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+                      <span style="font-size:11px;color:var(--mut);line-height:1.5">{{ cardCropNote }}</span>
+                      <button onClick="{{ cardFocusReset }}" type="button" style="flex:0 0 auto;font-family:inherit;background:transparent;border:1px solid var(--line);color:var(--mut);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;cursor:pointer" style-hover="color:var(--fg);border-color:var(--fg)">Center</button>
+                    </div>
+                  </div>
+                </sc-if>
               </div>
             </div>
           </section>
@@ -1002,6 +1028,59 @@ class Component extends DCLogic {
     });
   }
 
+  /* The site crops two images: the website case hero to 21:10 and the 3D card
+     to 2:3. These drive the crop preview under each picker — the focal point is
+     stored on the record as a CSS position pair and replayed by the public page
+     as object-position, which is why the preview predicts the real crop. */
+  _focusAt(e, key) {
+    const r = e.currentTarget.getBoundingClientRect();
+    const cl = (v) => Math.max(0, Math.min(100, Math.round(v)));
+    const patch = {};
+    patch[key] = cl(((e.clientX - r.left) / (r.width || 1)) * 100) + '% ' +
+                 cl(((e.clientY - r.top) / (r.height || 1)) * 100) + '%';
+    this._patch(patch);
+  }
+
+  // One crop control, reused per asset. Returns everything its markup binds.
+  // Drag state carries the field key so the two controls can coexist.
+  _cropView(a, key, ratio, label) {
+    const v = String((this.state.p && this.state.p[key]) || '50% 50%');
+    return {
+      show: !!(a && a.url),
+      focus: v,
+      x: (parseFloat(v.split(' ')[0]) || 50) + '%',
+      y: (parseFloat(v.split(' ')[1]) || 50) + '%',
+      ratio: ratio,
+      note: this._cropNote(a, ratio, label),
+      down: (e) => {
+        this._hfDrag = key;
+        try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {}
+        this._focusAt(e, key);
+      },
+      move: (e) => { if (this._hfDrag === key) this._focusAt(e, key); },
+      up: (e) => {
+        this._hfDrag = null;
+        try { e.currentTarget.releasePointerCapture(e.pointerId); } catch (_) {}
+      },
+      reset: () => { const p = {}; p[key] = '50% 50%'; this._patch(p); },
+    };
+  }
+
+  _cropNote(a, ratio, label) {
+    const parts = String(ratio || '21/10').split('/');
+    const target = (parseFloat(parts[0]) || 21) / (parseFloat(parts[1]) || 10);
+    const name = label || '21:10';
+    if (!a || !a.w || !a.h) return 'Drag to set the focal point of the ' + name + ' crop.';
+    const ar = a.w / a.h;
+    if (Math.abs(ar - target) < 0.02) return a.w + '×' + a.h + ' · fits ' + name + ' exactly, nothing is cropped.';
+    if (ar < target) {
+      const lost = Math.round((1 - (a.w / target) / a.h) * 100);
+      return a.w + '×' + a.h + ' · full width, ' + lost + '% of the height is cropped. Drag to choose which part stays.';
+    }
+    const lost = Math.round((1 - (a.h * target) / a.w) * 100);
+    return a.w + '×' + a.h + ' · full height, ' + lost + '% of the width is cropped. Drag to choose which part stays.';
+  }
+
   _upl(key, v) { this.setState((s) => ({ upload: Object.assign({}, s.upload, { [key]: v }) })); }
 
   // Same ceilings the API enforces. Checked here too so a file that can never
@@ -1278,6 +1357,10 @@ class Component extends DCLogic {
         op: s.shDrag === i ? '0.45' : '1',
       };
     });
+    // Ratios are hard-coded in two places each — here and on the page that
+    // renders them. Change them together or the preview stops predicting.
+    const heroCrop = this._cropView(asset('hero'), 'heroFocus', '21/10', '21:10');
+    const cardCrop = this._cropView(asset('card'), 'cardFocus', '2/3', '2:3');
     const filled = (p.shots || []).filter((x) => x.img || x.assetId);
     const gridCells = (p.shots || []).map((sh, i) => ({
       span: s.gridMobile ? 6 : (sh.span || 1),
@@ -1356,6 +1439,18 @@ class Component extends DCLogic {
       heroThumb: (asset('hero') && asset('hero').url) || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', heroThumbShow: asset('hero') && asset('hero').url ? 'block' : 'none',
       heroLabel: uerr.hero ? uerr.hero : asset('hero') ? asset('hero').name + ' · ' + asset('hero').w + '×' + asset('hero').h : 'Choose an image',
       heroBarShow: (upl.hero != null && upl.hero >= 0) ? 'block' : 'none', heroPct: pct('hero'),
+      // Website heroes are cropped to 21:10; brand heroes render at their own
+      // ratio, so they get no crop control.
+      heroCropShow: t === 'website' && heroCrop.show,
+      heroFocus: heroCrop.focus, heroFocusX: heroCrop.x, heroFocusY: heroCrop.y,
+      heroCropNote: heroCrop.note,
+      heroFocusDown: heroCrop.down, heroFocusMove: heroCrop.move,
+      heroFocusUp: heroCrop.up, heroFocusReset: heroCrop.reset,
+      cardCropShow: cardCrop.show,
+      cardFocus: cardCrop.focus, cardFocusX: cardCrop.x, cardFocusY: cardCrop.y,
+      cardCropRatio: cardCrop.ratio, cardCropNote: cardCrop.note,
+      cardFocusDown: cardCrop.down, cardFocusMove: cardCrop.move,
+      cardFocusUp: cardCrop.up, cardFocusReset: cardCrop.reset,
       posterThumb: (asset('poster') && asset('poster').url) || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', posterThumbShow: asset('poster') && asset('poster').url ? 'block' : 'none',
       posterLabel: uerr.poster ? uerr.poster : asset('poster') ? asset('poster').name : 'Choose an image',
       posterLabelFg: uerr.poster ? 'var(--warn)' : 'var(--mut)',

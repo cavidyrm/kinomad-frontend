@@ -66,6 +66,10 @@ body.dev.dragging #frame{cursor:grabbing}
 @container page (max-width:1120px){
   [data-r=foot]{min-height:0!important}
 }
+/* The 3D section is designed three-up. auto-fit collapsed it to two columns at
+   mid widths, and a 2/3 portrait in a ~450px column rendered ~675px tall. */
+@container page (max-width:900px){[data-r=threegrid]{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@container page (max-width:560px){[data-r=threegrid]{grid-template-columns:1fr!important}}
 @container page (max-width:780px){
   [data-r=foot-grid]{grid-template-columns:1fr!important}
   [data-r=wmeta]{grid-template-columns:1fr 1fr!important}
@@ -291,6 +295,18 @@ body.dev.dragging #frame{cursor:grabbing}
       <div class="km-skel" style="height:clamp(300px,29cqw,450px);animation-delay:0.36s"></div>
     </div>
   </sc-if>
+  <sc-if value="{{ webPager }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;border-top:1px solid var(--line);margin:clamp(28px,3.5cqw,48px) clamp(20px,4cqw,64px) 0;padding-top:20px">
+      <span style="font-family:'Gambetta',serif;font-size:13px;letter-spacing:0.14em;color:var(--mut);white-space:nowrap">{{ webRange }}</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button onClick="{{ webPrev }}" disabled="{{ webPrevDis }}" aria-label="Previous page of websites" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:13px;font-weight:600;letter-spacing:0.08em;cursor:pointer;opacity:{{ webPrevOp }}">←</button>
+        <sc-for list="{{ webPageBtns }}" as="pg" hint-placeholder-count="2">
+          <button data-n="{{ pg.n }}" onClick="{{ webGoPage }}" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 12px;border:1px solid {{ pg.bd }};background:{{ pg.bg }};color:{{ pg.fg }};font-size:12px;font-weight:600;letter-spacing:0.14em;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease">{{ pg.label }}</button>
+        </sc-for>
+        <button onClick="{{ webNext }}" disabled="{{ webNextDis }}" aria-label="Next page of websites" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:13px;font-weight:600;letter-spacing:0.08em;cursor:pointer;opacity:{{ webNextOp }}">→</button>
+      </div>
+    </div>
+  </sc-if>
 </section>
 
 <section data-screen-label="Brand identity" id="brand" style="padding:0 clamp(20px,4cqw,64px) clamp(64px,9cqw,130px);scroll-margin-top:70px">
@@ -360,6 +376,18 @@ body.dev.dragging #frame{cursor:grabbing}
       </div>
     </sc-if>
   </div>
+  <sc-if value="{{ brandPager }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;border-top:1px solid var(--line);margin-top:clamp(28px,3.5cqw,48px);padding-top:20px">
+      <span style="font-family:'Gambetta',serif;font-size:13px;letter-spacing:0.14em;color:var(--mut);white-space:nowrap">{{ brandRange }}</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button onClick="{{ brandPrev }}" disabled="{{ brandPrevDis }}" aria-label="Previous page of brand projects" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:13px;font-weight:600;letter-spacing:0.08em;cursor:pointer;opacity:{{ brandPrevOp }}">←</button>
+        <sc-for list="{{ brandPageBtns }}" as="pg" hint-placeholder-count="2">
+          <button data-n="{{ pg.n }}" onClick="{{ brandGoPage }}" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 12px;border:1px solid {{ pg.bd }};background:{{ pg.bg }};color:{{ pg.fg }};font-size:12px;font-weight:600;letter-spacing:0.14em;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease">{{ pg.label }}</button>
+        </sc-for>
+        <button onClick="{{ brandNext }}" disabled="{{ brandNextDis }}" aria-label="Next page of brand projects" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:13px;font-weight:600;letter-spacing:0.08em;cursor:pointer;opacity:{{ brandNextOp }}">→</button>
+      </div>
+    </div>
+  </sc-if>
 </section>
 
 <section data-screen-label="3D" id="three-d" style="padding:0 clamp(20px,4cqw,64px) clamp(64px,9cqw,130px);scroll-margin-top:70px">
@@ -370,12 +398,19 @@ body.dev.dragging #frame{cursor:grabbing}
       <span style="font-family:'Gambetta',serif;font-size:13px;letter-spacing:0.14em;color:var(--mut)">03 · {{ threeCountPad }} PROJECTS//</span>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(24px,3cqw,40px)">
+  <div data-r="threegrid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3cqw,40px)">
     <sc-for list="{{ threes }}" as="tp" hint-placeholder-count="3">
       <a href="{{ tp.href }}" id="{{ tp.id }}" class="km-webcard {{ tp.openCls }}" onClick="{{ cardTap }}" style="color:inherit;scroll-margin-top:90px;display:flex;flex-direction:column;gap:16px;animation:km-rise 1s cubic-bezier(0.2,0.7,0.2,1) both;animation-timeline:view();animation-range:entry 0% entry 35%">
-        <div onMouseMove="{{ parallaxMove }}" onMouseLeave="{{ parallaxLeave }}" style="position:relative;overflow:hidden;aspect-ratio:2/3;background:var(--card)">
+        <div onMouseMove="{{ parallaxMove }}" onMouseLeave="{{ parallaxLeave }}" style="position:relative;overflow:hidden;aspect-ratio:2/3;max-height:min(620px,calc(var(--vh,1svh) * 72));background:var(--card)">
           <div data-parallax="1" class="km-webcard-img" style="position:absolute;inset:-7%;transition:transform 0.6s cubic-bezier(0.2,0.7,0.2,1),filter 0.6s ease;will-change:transform">
-            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ tp.imgId }}" src="{{ tp.src }}" shape="rect" radius="0" placeholder="{{ tp.ph }}" style="width:100%;height:100%" hint-size="100%,420px"></x-import>
+            <!-- Real card images render as <img> so object-position can honour the
+                 focal point; the slot branch keeps the design tool's drop target. -->
+            <sc-if value="{{ tp.cardReal }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ tp.src }}" alt="{{ tp.ph }}" style="width:100%;height:100%;object-fit:cover;object-position:{{ tp.cardFocus }};display:block">
+            </sc-if>
+            <sc-if value="{{ tp.cardSlot }}" hint-placeholder-val="{{ true }}">
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ tp.imgId }}" src="{{ tp.src }}" shape="rect" radius="0" placeholder="{{ tp.ph }}" style="width:100%;height:100%" hint-size="100%,420px"></x-import>
+            </sc-if>
           </div>
           <div class="km-webcard-info" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(14px,1.6cqw,22px);pointer-events:none;padding:clamp(18px,2.2cqw,30px);box-sizing:border-box;color:#F1EFE7;transition:opacity 0.5s ease 0.15s,transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.15s">
             <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:rgba(241,239,231,0.65)">({{ tp.num }}) · 3D &amp; motion</span>
@@ -393,9 +428,11 @@ body.dev.dragging #frame{cursor:grabbing}
             <span class="km-cta" style="display:inline-flex;align-self:flex-start;align-items:center;gap:10px;font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 18px">View case <span style="font-size:13px">↗</span></span>
           </div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px">
-          <span style="font-size:22px;font-weight:600;letter-spacing:-0.01em">{{ tp.name }}</span>
-          <span style="font-size:13px;color:var(--mut);font-weight:500">{{ tp.meta }}</span>
+        <!-- Real project names are full sentences; without wrapping they pushed
+             the meta text out of the card. -->
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;min-width:0">
+          <span style="min-width:0;font-size:22px;font-weight:600;letter-spacing:-0.01em;overflow-wrap:anywhere;text-wrap:pretty">{{ tp.name }}</span>
+          <span style="min-width:0;font-size:13px;color:var(--mut);font-weight:500;overflow-wrap:anywhere">{{ tp.meta }}</span>
         </div>
       </a>
     </sc-for>
@@ -414,6 +451,18 @@ body.dev.dragging #frame{cursor:grabbing}
       </div>
     </sc-if>
   </div>
+  <sc-if value="{{ threePager }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 24px;border-top:1px solid var(--line);margin-top:clamp(28px,3.5cqw,48px);padding-top:20px">
+      <span style="font-family:'Gambetta',serif;font-size:13px;letter-spacing:0.14em;color:var(--mut);white-space:nowrap">{{ threeRange }}</span>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button onClick="{{ threePrev }}" disabled="{{ threePrevDis }}" aria-label="Previous page of 3D and motion projects" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:13px;font-weight:600;letter-spacing:0.08em;cursor:pointer;opacity:{{ threePrevOp }}">←</button>
+        <sc-for list="{{ threePageBtns }}" as="pg" hint-placeholder-count="2">
+          <button data-n="{{ pg.n }}" onClick="{{ threeGoPage }}" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 12px;border:1px solid {{ pg.bd }};background:{{ pg.bg }};color:{{ pg.fg }};font-size:12px;font-weight:600;letter-spacing:0.14em;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease">{{ pg.label }}</button>
+        </sc-for>
+        <button onClick="{{ threeNext }}" disabled="{{ threeNextDis }}" aria-label="Next page of 3D and motion projects" style="font-family:inherit;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:13px;font-weight:600;letter-spacing:0.08em;cursor:pointer;opacity:{{ threeNextOp }}">→</button>
+      </div>
+    </div>
+  </sc-if>
 </section>
 
 <section data-screen-label="Works CTA" style="padding:clamp(64px,10cqw,150px) clamp(20px,4cqw,64px);text-align:center;border-top:1px solid var(--line)">
@@ -458,7 +507,7 @@ body.dev.dragging #frame{cursor:grabbing}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;device&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Desktop&quot;,&quot;options&quot;:[&quot;Desktop&quot;,&quot;Tablet&quot;,&quot;Mobile&quot;],&quot;section&quot;:&quot;Preview&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#639392&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bgColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#1a1a1a&quot;,&quot;options&quot;:[&quot;#1a1a1a&quot;,&quot;#EDF0F4&quot;],&quot;section&quot;:&quot;Brand&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;navColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#050505&quot;,&quot;section&quot;:&quot;Brand&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
-  state = { light: false, menuOpen: false, device: 'Desktop', tapCard: null, bookingOpen: false, bkStep: 1, bkType: 0, bkMonthOffset: 0, bkDate: '', bkTime: '', bkName: '', bkEmail: '', bkNote: '', bkError: '' };
+  state = { webPage: 0, brandPage: 0, threePage: 0, light: false, menuOpen: false, device: 'Desktop', tapCard: null, bookingOpen: false, bkStep: 1, bkType: 0, bkMonthOffset: 0, bkDate: '', bkTime: '', bkName: '', bkEmail: '', bkNote: '', bkError: '' };
 
   componentDidMount() {
     let light;
@@ -557,6 +606,9 @@ class Component extends DCLogic {
   }
 
   _mapThree(c) {
+    // Only an API-backed card image takes the <img> path — the built-in samples
+    // have no asset and keep image-slot, so the design tool still works on them.
+    const fromApi = !!(c.hasCardAsset && c.heroSrc);
     return {
       id: c.slug || c.id,
       imgId: c.heroId,
@@ -568,6 +620,50 @@ class Component extends DCLogic {
       industry: c.industry,
       year: c.year,
       statement: c.statement,
+      cardReal: fromApi,
+      cardSlot: !fromApi,
+      cardFocus: c.cardFocus || '50% 50%',
+    };
+  }
+
+  /* Shared pager for the three project sections. Slicing happens after mapping
+     so the (nn) card numbering keeps counting projects, not positions on the
+     page. Page sizes differ per section — each is roughly one screenful of that
+     card type, not a uniform count. */
+  _pageView(items, stateKey, sectionId, per) {
+    const total = Math.max(1, Math.ceil(items.length / per));
+    const page = Math.min(this.state[stateKey] || 0, total - 1);
+    const start = page * per;
+    const shown = items.slice(start, start + per);
+    const go = (n) => {
+      const p = Math.max(0, Math.min(total - 1, n));
+      if (p === page) return;
+      const next = { tapCard: null };
+      next[stateKey] = p;
+      this.setState(next, () => {
+        const el = document.getElementById(sectionId);
+        const sv = this._sv();
+        if (el && sv) sv.scrollTo({ top: sv.scrollTop + this._relTop(el) - 56, behavior: 'smooth' });
+      });
+    };
+    return {
+      items: shown,
+      pager: total > 1,
+      btns: Array.from({ length: total }, (_, n) => ({
+        n,
+        label: String(n + 1).padStart(2, '0'),
+        fg: n === page ? 'var(--bg)' : 'var(--fg)',
+        bg: n === page ? 'var(--fg)' : 'transparent',
+        bd: n === page ? 'var(--fg)' : 'var(--line)',
+      })),
+      range: items.length ? (String(start + 1).padStart(2, '0') + '–' + String(start + shown.length).padStart(2, '0') + ' of ' + this._countPad(items.length)) : '',
+      prevDis: page === 0,
+      nextDis: page >= total - 1,
+      prevOp: page === 0 ? '0.35' : '1',
+      nextOp: page >= total - 1 ? '0.35' : '1',
+      prev: () => go(page - 1),
+      next: () => go(page + 1),
+      goPage: (e) => go(Number(e.currentTarget.dataset.n)),
     };
   }
 
@@ -1053,6 +1149,11 @@ class Component extends DCLogic {
     const seg = (name) => (this.props.device || 'Desktop') === name
       ? { bg: 'var(--accent)', fg: '#14130F' }
       : { bg: 'transparent', fg: 'rgba(241,239,231,0.7)' };
+    // Websites are full-bleed, brand rows are tall four-image strips, 3D is a
+    // three-up grid — so each section gets a page size that fills a screen.
+    const webPg = this._pageView(webs, 'webPage', 'websites', 8);
+    const brandPg = this._pageView(brands, 'brandPage', 'brand', 6);
+    const threePg = this._pageView(threes, 'threePage', 'three-d', 9);
     return {
       ...this._bkView(),
       worksLoading: loading,
@@ -1070,7 +1171,19 @@ class Component extends DCLogic {
         e.stopPropagation();
         window.open(e.currentTarget.dataset.url, '_blank', 'noopener');
       },
-      webs, brands, threes,
+      webs: webPg.items, brands: brandPg.items, threes: threePg.items,
+      webPager: webPg.pager, webPageBtns: webPg.btns, webRange: webPg.range,
+      webPrevDis: webPg.prevDis, webNextDis: webPg.nextDis,
+      webPrevOp: webPg.prevOp, webNextOp: webPg.nextOp,
+      webPrev: webPg.prev, webNext: webPg.next, webGoPage: webPg.goPage,
+      brandPager: brandPg.pager, brandPageBtns: brandPg.btns, brandRange: brandPg.range,
+      brandPrevDis: brandPg.prevDis, brandNextDis: brandPg.nextDis,
+      brandPrevOp: brandPg.prevOp, brandNextOp: brandPg.nextOp,
+      brandPrev: brandPg.prev, brandNext: brandPg.next, brandGoPage: brandPg.goPage,
+      threePager: threePg.pager, threePageBtns: threePg.btns, threeRange: threePg.range,
+      threePrevDis: threePg.prevDis, threeNextDis: threePg.nextDis,
+      threePrevOp: threePg.prevOp, threeNextOp: threePg.nextOp,
+      threePrev: threePg.prev, threeNext: threePg.next, threeGoPage: threePg.goPage,
       segDesktop: seg('Desktop'),
       segTablet: seg('Tablet'),
       segMobile: seg('Mobile'),

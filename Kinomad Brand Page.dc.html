@@ -154,7 +154,7 @@ body.dev.dragging #frame{cursor:grabbing}
 </section>
 
 <section data-screen-label="Case hero image" style="padding:0">
-  <div style="position:relative;width:100%;aspect-ratio:21/10;background:var(--card)">
+  <div style="position:relative;width:100%;aspect-ratio:{{ c.heroRatio }};background:var(--card)">
     <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ c.heroId }}" src="{{ c.heroSrc }}" shape="rect" radius="0" placeholder="{{ c.heroPh }}" style="position:absolute;inset:0;width:100%;height:100%" hint-size="100%,560px"></x-import>
     <!-- Covers the empty image slot while loading; never wrap x-import in sc-if,
          it remounts the component on every state flip. -->
@@ -727,6 +727,11 @@ class Component extends DCLogic {
     const c = (loading ? null
       : (window.KMAPI && KMAPI.public ? KMAPI.public.matchCase(cases, pid) : cases.find((x) => x.id === pid || x.slug === pid)) || cases[0]
     ) || { credits: [], shots: [] };
+    // Brand heroes are deliberately not cropped: the frame takes the image's
+    // own ratio, so a 16:9 upload stays 16:9. 21:10 is only the fallback for a
+    // hero whose pixel size is unknown.
+    const hw = c && c.heroW, hh = c && c.heroH;
+    c.heroRatio = (hw && hh) ? (hw + '/' + hh) : (c.heroRatio || '21/10');
     const others = cases.filter((x) => x.id !== c.id && x.slug !== c.slug).map((x) => ({
       name: x.name, num: x.num, href: this._href('Kinomad Brand Page.dc.html', x.slug || x.id),
     }));

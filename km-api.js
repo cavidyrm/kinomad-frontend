@@ -279,6 +279,11 @@
       hosting: p.hosting,
       liveUrl: p.liveUrl,
       fill: p.fill,
+      // Opaque CSS position strings ("40% 25%"). Passed straight through —
+      // parsing and re-serialising them would break the shape both the crop
+      // preview and the public pages expect.
+      heroFocus: p.heroFocus,
+      cardFocus: p.cardFocus,
     };
     var heroKey = p.type === 'three' ? 'card' : 'hero';
     var heroId = assetRef(assets, heroKey);
@@ -465,13 +470,27 @@
     return String(v).padStart(2, '0');
   }
 
+  function assetDim(assets, key, dim) {
+    var a = assets && assets[key];
+    return (a && typeof a === 'object' && a[dim]) || 0;
+  }
+
   function projectToCase(p, i) {
     var slug = p.slug || p.id;
     var hero = assetRef(p.assets, 'hero') || assetRef(p.assets, 'card') || '';
     var poster = assetRef(p.assets, 'poster') || hero;
     var reel = assetRef(p.assets, 'reel') || '';
     var live = p.liveUrl || (p.bundle && p.bundle.url) || '#';
+    var heroKey = p.assets && p.assets.hero ? 'hero' : 'card';
     return {
+      // The hero's own pixel size, so a page that must not crop can take the
+      // image's ratio instead of imposing one.
+      heroW: assetDim(p.assets, heroKey, 'w'),
+      heroH: assetDim(p.assets, heroKey, 'h'),
+      heroFocus: p.heroFocus || '',
+      cardFocus: p.cardFocus || '',
+      hasHeroAsset: !!assetRef(p.assets, 'hero'),
+      hasCardAsset: !!assetRef(p.assets, 'card'),
       id: slug,
       slug: slug,
       num: padNum(p.position, i),
