@@ -56,6 +56,53 @@ a:hover{color:var(--accent-ink)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .km-skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--accent);color:#14130F;font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:12px 18px;transition:top 0.2s ease}
 .km-skip:focus{top:12px;color:#14130F}
+/* Booking modal: desktop is a centred two-column card; tablet narrows the rail;
+   phones get a full-height sheet with the rail folded into a scrolling header. */
+@media (max-width:1024px){
+  [data-r=bk-wrap]{padding:clamp(16px,3vw,32px)!important}
+  [data-r=bk-shell]{width:100%!important;max-width:900px;grid-template-columns:250px 1fr!important;grid-template-rows:minmax(0,1fr)!important;max-height:min(720px,92dvh)!important}
+  [data-r=bk-cal]{grid-template-columns:1fr 180px!important}
+  [data-r=bk-slots]{max-height:none!important}
+}
+body.dev [data-r=bk-wrap]{inset:auto!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%);width:var(--frame-w);height:var(--frame-h);max-height:100dvh}
+body.dev-t [data-r=bk-wrap]{padding:24px!important}
+body.dev-t [data-r=bk-shell]{width:100%!important;max-width:none!important;height:100%!important;max-height:100%!important;grid-template-columns:230px 1fr!important;grid-template-rows:minmax(0,1fr)!important}
+body.dev-t [data-r=bk-cal]{grid-template-columns:1fr 168px!important}
+body.dev-m [data-r=bk-wrap]{padding:0!important;align-items:stretch!important}
+body.dev-m [data-r=bk-shell]{width:100%!important;max-width:none!important;height:100%!important;max-height:100%!important;border:none!important;grid-template-columns:1fr!important;grid-template-rows:auto minmax(0,1fr)!important}
+body.dev-m [data-r=bk-side]{border-right:none!important;border-bottom:1px solid rgba(241,239,231,0.12)!important;padding:12px 18px 14px!important;gap:12px!important}
+body.dev-m [data-r=bk-brand],body.dev-m [data-r=bk-mail]{display:none!important}
+body.dev-m [data-r=bk-title] h3{font-size:22px!important}
+body.dev-m [data-r=bk-chips]{flex-direction:row!important;overflow-x:auto;scrollbar-width:none;margin-inline:-18px;padding-inline:18px}
+body.dev-m [data-r=bk-chips]::-webkit-scrollbar{display:none}
+body.dev-m [data-r=bk-chips] > button{flex:0 0 auto;flex-direction:column!important;align-items:flex-start!important;gap:2px!important;min-width:132px}
+body.dev-m [data-r=bk-meta]{margin-top:0!important;flex-direction:row!important;flex-wrap:wrap;gap:6px 16px!important;font-size:11px!important}
+body.dev-m [data-r=bk-head]{padding:12px 18px!important}
+body.dev-m [data-r=bk-body]{padding:16px 18px 20px!important}
+body.dev-m [data-r=bk-cal]{grid-template-columns:1fr!important;gap:22px!important}
+body.dev-m [data-r=bk-slots]{max-height:none!important;overflow:visible!important}
+body.dev-m [data-r=bk-foot]{padding:12px 18px!important}
+body.dev-m [data-r=bk-acts]{width:100%!important}
+body.dev-m [data-r=bk-acts] > button{flex:1;padding-block:15px!important}
+@media (max-width:780px){
+  [data-r=bk-wrap]{padding:0!important;align-items:stretch!important}
+  [data-r=bk-shell]{width:100%!important;max-width:none!important;height:100dvh;max-height:100dvh!important;border:none!important;grid-template-columns:1fr!important;grid-template-rows:auto minmax(0,1fr)!important}
+  [data-r=bk-side]{border-right:none!important;border-bottom:1px solid rgba(241,239,231,0.12)!important;padding:calc(12px + env(safe-area-inset-top)) 18px 14px!important;gap:12px!important}
+  [data-r=bk-brand]{display:none!important}
+  [data-r=bk-title] h3{font-size:22px!important}
+  [data-r=bk-chips]{flex-direction:row!important;overflow-x:auto;scrollbar-width:none;margin-inline:-18px;padding-inline:18px}
+  [data-r=bk-chips]::-webkit-scrollbar{display:none}
+  [data-r=bk-chips] > button{flex:0 0 auto;flex-direction:column!important;align-items:flex-start!important;gap:2px!important;min-width:132px}
+  [data-r=bk-meta]{margin-top:0!important;flex-direction:row!important;flex-wrap:wrap;gap:6px 16px!important;font-size:11px!important}
+  [data-r=bk-head]{padding:12px 18px!important}
+  [data-r=bk-body]{padding:16px 18px 20px!important;-webkit-overflow-scrolling:touch}
+  [data-r=bk-cal]{grid-template-columns:1fr!important;gap:22px!important}
+  [data-r=bk-slots]{max-height:none!important;overflow:visible!important}
+  [data-r=bk-foot]{padding:12px 18px calc(12px + env(safe-area-inset-bottom))!important}
+  [data-r=bk-mail]{display:none!important}
+  [data-r=bk-acts]{width:100%!important}
+  [data-r=bk-acts] > button{flex:1;padding-block:15px!important}
+}
 #frame{width:var(--frame-w,100%);margin-inline:auto;container:page / inline-size;position:relative;background:var(--bg);transition:width 0.5s cubic-bezier(0.16,1,0.3,1)}
 body.dev{background:#06080d;height:100dvh;overflow:hidden;display:flex;align-items:center;justify-content:center}
 body.dev #frame{height:var(--frame-h,100%);max-height:100dvh;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -79,7 +126,7 @@ body.dev.dragging #frame{cursor:grabbing}
 </style>
 </helmet>
 
-<header style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;width:min(330px,calc(100vw - 36px));display:grid;grid-template-rows:56px {{ navRows }};background:color-mix(in srgb,var(--nav,#0d1016) 62%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(241,239,231,0.1);overflow:hidden;transition:grid-template-rows 0.75s cubic-bezier(0.16,1,0.3,1)">
+<header style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;width:min(330px,calc(100vw - 36px));display:grid;grid-template-rows:56px {{ navRows }};background:color-mix(in srgb,var(--nav,#050505) 62%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(241,239,231,0.1);overflow:hidden;transition:grid-template-rows 0.75s cubic-bezier(0.16,1,0.3,1)">
   <div style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 8px 0 18px;box-sizing:border-box">
     <a href="Kinomad Landing.dc.html" style="font-weight:700;letter-spacing:-0.02em;font-size:17px;text-transform:uppercase;color:#F1EFE7" style-hover="color:#F1EFE7"><img src="assets/logo-light.svg" alt="Kinomad" style="width:24px;height:auto;display:block"></a>
     <button onClick="{{ toggleMenu }}" aria-label="Menu" aria-expanded="{{ menuAria }}" aria-controls="km-nav-menu" style="background:transparent;border:none;color:#F1EFE7;cursor:pointer;font-size:22px;line-height:1;padding:8px 12px;font-family:inherit">{{ menuIcon }}</button>
@@ -102,20 +149,20 @@ body.dev.dragging #frame{cursor:grabbing}
   </div>
 </header>
 
-<div style="position:fixed;inset:0;z-index:200;display:{{ bookingDisplay }};align-items:center;justify-content:center;padding:clamp(16px,3cqw,48px);box-sizing:border-box">
+<div data-r="bk-wrap" style="position:fixed;inset:0;z-index:200;display:{{ bookingDisplay }};align-items:center;justify-content:center;padding:clamp(16px,3cqw,48px);box-sizing:border-box">
   <div onClick="{{ closeBooking }}" style="position:absolute;inset:0;background:rgba(5,5,5,0.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)"></div>
-  <div data-r="bk-shell" style="position:relative;width:min(980px,100%);max-height:min(680px,100%);background:#141414;border:1px solid rgba(241,239,231,0.14);display:grid;grid-template-columns:290px 1fr;overflow:hidden;animation:km-rise 0.5s cubic-bezier(0.16,1,0.3,1) both">
+  <div data-r="bk-shell" style="position:relative;width:min(980px,100%);max-height:min(680px,100%,100dvh);background:#141414;border:1px solid rgba(241,239,231,0.14);display:grid;grid-template-columns:290px 1fr;grid-template-rows:minmax(0,1fr);overflow:hidden;animation:km-rise 0.5s cubic-bezier(0.16,1,0.3,1) both">
 
-    <aside data-r="bk-side" style="background:#0d0d0d;border-right:1px solid rgba(241,239,231,0.12);padding:clamp(22px,2.4cqw,32px);display:flex;flex-direction:column;gap:22px;min-width:0">
-      <div style="display:flex;align-items:center;gap:11px">
+    <aside data-r="bk-side" style="background:#0d0d0d;border-right:1px solid rgba(241,239,231,0.12);padding:clamp(22px,2.4cqw,32px);display:flex;flex-direction:column;gap:22px;min-width:0;min-height:0;overflow:auto">
+      <div data-r="bk-brand" style="display:flex;align-items:center;gap:11px">
         <div style="width:26px;aspect-ratio:1294.8/1305.87;-webkit-mask:url('assets/logo-light.svg') center/contain no-repeat;mask:url('assets/logo-light.svg') center/contain no-repeat;background:#F1EFE7"></div>
         <span style="font-family:'Chillax',sans-serif;font-size:11px;letter-spacing:0.16em;color:rgba(241,239,231,0.55)">KINOMAD STUDIO</span>
       </div>
-      <div style="display:flex;flex-direction:column;gap:5px">
+      <div data-r="bk-title" style="display:flex;flex-direction:column;gap:5px">
         <span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(241,239,231,0.5);font-weight:600">Book a call</span>
         <h3 style="margin:0;font-size:clamp(22px,2.4cqw,30px);font-weight:700;letter-spacing:-0.02em;line-height:1.02">{{ bkTypeName }}</h3>
       </div>
-      <div style="display:flex;flex-direction:column;gap:7px">
+      <div data-r="bk-chips" style="display:flex;flex-direction:column;gap:7px">
         <sc-for list="{{ bkTypes }}" as="mt" hint-placeholder-count="2">
           <button data-idx="{{ mt.idx }}" onClick="{{ bkPickType }}" style="font-family:inherit;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid {{ mt.bd }};background:{{ mt.bg }};color:#F1EFE7;padding:11px 13px;cursor:pointer;transition:border-color .25s ease,background .25s ease">
             <span style="font-size:13px;font-weight:600">{{ mt.name }}</span>
@@ -123,15 +170,15 @@ body.dev.dragging #frame{cursor:grabbing}
           </button>
         </sc-for>
       </div>
-      <div style="margin-top:auto;display:flex;flex-direction:column;gap:11px;font-size:12px;color:rgba(241,239,231,0.6);font-weight:500">
+      <div data-r="bk-meta" style="margin-top:auto;display:flex;flex-direction:column;gap:11px;font-size:12px;color:rgba(241,239,231,0.6);font-weight:500">
         <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px">◷</span>{{ bkDur }}</div>
         <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px">▤</span>Video call, link sent after</div>
         <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px">⊕</span>{{ bkTz }}</div>
       </div>
     </aside>
 
-    <div style="position:relative;display:flex;flex-direction:column;min-width:0">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px clamp(16px,2cqw,26px);border-bottom:1px solid rgba(241,239,231,0.12)">
+    <div data-r="bk-main" style="position:relative;display:flex;flex-direction:column;min-width:0;min-height:0">
+      <div data-r="bk-head" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px clamp(16px,2cqw,26px);border-bottom:1px solid rgba(241,239,231,0.12)">
         <span style="font-family:'Chillax',sans-serif;font-size:11px;letter-spacing:0.16em;color:rgba(241,239,231,0.5)">{{ bkStepLabel }}</span>
         <button onClick="{{ closeBooking }}" aria-label="Close booking" style="font-family:inherit;border:1px solid rgba(241,239,231,0.22);background:transparent;color:#F1EFE7;width:34px;height:34px;cursor:pointer;font-size:15px;transition:border-color 0.25s ease,color 0.25s ease" style-hover="border-color:var(--accent);color:var(--accent)">×</button>
       </div>
@@ -207,9 +254,9 @@ body.dev.dragging #frame{cursor:grabbing}
 
       </div>
 
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px clamp(16px,2cqw,26px);border-top:1px solid rgba(241,239,231,0.12)">
-        <a href="mailto:Hello@Kinomadstudio.com" style="font-size:12px;letter-spacing:0.06em;font-weight:600;color:rgba(241,239,231,0.5)">or email us instead</a>
-        <div style="display:flex;gap:10px">
+      <div data-r="bk-foot" style="display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px clamp(16px,2cqw,26px);border-top:1px solid rgba(241,239,231,0.12)">
+        <a data-r="bk-mail" href="mailto:Hello@Kinomadstudio.com" style="font-size:12px;letter-spacing:0.06em;font-weight:600;color:rgba(241,239,231,0.5)">or email us instead</a>
+        <div data-r="bk-acts" style="display:flex;gap:10px">
           <sc-if value="{{ bkShowBack }}" hint-placeholder-val="{{ false }}">
             <button onClick="{{ bkBack }}" style="font-family:inherit;border:1px solid rgba(241,239,231,0.2);background:transparent;color:#F1EFE7;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 18px;cursor:pointer">Back</button>
           </sc-if>
@@ -510,6 +557,16 @@ class Component extends DCLogic {
   state = { webPage: 0, brandPage: 0, threePage: 0, light: false, menuOpen: false, device: 'Desktop', tapCard: null, bookingOpen: false, bkStep: 1, bkType: 0, bkMonthOffset: 0, bkDate: '', bkTime: '', bkName: '', bkEmail: '', bkNote: '', bkError: '' };
 
   componentDidMount() {
+    // Tap outside any card returns the revealed one to rest. Pointer-capture-free and
+    // passive: it only ever clears state, never blocks the tap it observed.
+    this._tapOut = (e) => {
+      if (!this.state.tapCard && !this.state.hovBrand) return;
+      const t = e.target;
+      if (t && t.closest && t.closest('.km-webcard, [data-brand]')) return;
+      this.setState({ tapCard: null, hovBrand: null });
+    };
+    document.addEventListener('pointerdown', this._tapOut, { passive: true });
+
     let light;
     const saved = localStorage.getItem('kinomad-theme');
     if (saved === 'light' || saved === 'dark') light = saved === 'light';
@@ -781,6 +838,7 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
+    if (this._tapOut) document.removeEventListener('pointerdown', this._tapOut);
     window.removeEventListener('pointerdown', this._pd);
     window.removeEventListener('pointermove', this._pm);
     window.removeEventListener('pointerup', this._pu);
@@ -1081,13 +1139,9 @@ class Component extends DCLogic {
     const pA = this.props.accent ?? '#639392';
     const pN = this.props.navColor ?? '#050505';
     const pB = this.props.bgColor ?? '#1a1a1a';
-    if (this._pA !== undefined && this._pA !== pA) s('kinomad-accent', pA);
-    if (this._pN !== undefined && this._pN !== pN) s('kinomad-nav', pN);
-    if (this._pB !== undefined && this._pB !== pB) s('kinomad-bg', pB);
-    this._pA = pA; this._pN = pN; this._pB = pB;
-    let accent = g('kinomad-accent'); if (accent == null) { accent = pA; s('kinomad-accent', accent); }
-    let nav = g('kinomad-nav'); if (nav == null) { nav = pN; s('kinomad-nav', nav); }
-    let bg = g('kinomad-bg'); if (bg == null) { bg = pB; s('kinomad-bg', bg); }
+    const accent = pA;
+    const nav = pN;
+    const bg = pB;
     document.body.style.setProperty('--accent', accent);
     document.body.style.setProperty('--nav', nav);
     if (this.state.light) document.body.style.removeProperty('--bg');
@@ -1164,7 +1218,11 @@ class Component extends DCLogic {
       cardTap: (e) => {
         if (this.state.device === 'Desktop' && !this._touch()) return;
         const id = e.currentTarget.id;
-        if (this.state.tapCard !== id) { e.preventDefault(); this.setState({ tapCard: id }); }
+        // Touch has no hover: the first tap reveals the card, the second follows the
+        // link. Tapping outside is what returns it to rest.
+        if (this.state.tapCard === id) return;
+        e.preventDefault();
+        this.setState({ tapCard: id, hovBrand: null });
       },
       visitSite: (e) => {
         e.preventDefault();
@@ -1209,7 +1267,10 @@ class Component extends DCLogic {
       brandOpen: (e) => {
         if (e.composedPath && e.composedPath().some((n) => n.tagName === 'BUTTON' || n.tagName === 'INPUT')) return;
         const id = e.currentTarget.dataset.brand;
-        if (this.state.device !== 'Desktop' && this.state.hovBrand !== id) { this.setState({ hovBrand: id }); return; }
+        if ((this.state.device !== 'Desktop' || this._touch()) && this.state.hovBrand !== id) {
+          this.setState({ hovBrand: id, tapCard: null });
+          return;
+        }
         if (window.KMROUTES) KMROUTES.go('Kinomad Brand Page.dc.html', id);
         else window.location.href = 'Kinomad Brand Page.dc.html?project=' + id;
       },

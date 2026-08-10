@@ -89,9 +89,10 @@ file is present, failing the build if one is missing. The previous per-file whit
 what shipped an image without `km-api.js`. Anything new that lands next to the pages ships
 automatically; anything required that goes missing stops the build instead of the site.
 
-## Before the backend is live
+## When the API is unreachable
 
-Without a reachable `/api` the pages degrade honestly rather than erroring:
+The pages degrade honestly rather than erroring — useful for design review, and the
+behaviour to expect during an API outage:
 
 - Landing scheduler shows published studio hours and refuses to submit.
 - Works and the detail pages fall back to their built-in sample projects.
@@ -102,8 +103,8 @@ gate when no session exists. It only bypasses the gate — every panel still cal
 API and shows its own error state. Nothing to disable before shipping; once the API issues
 sessions the real gate takes over.
 
-If the site goes public before the API is ready, keep `/admin*` off the build or put basic
-auth in front of it:
+`/admin` is currently protected by the API's own session only. To keep unauthenticated
+requests from reaching the HTML at all, gate it in nginx:
 
 ```nginx
 location ~ ^/admin {
@@ -113,8 +114,8 @@ location ~ ^/admin {
 }
 ```
 
-Once sessions exist, gate `/admin` with `auth_request` against the session endpoint so an
-unauthenticated request never reaches the HTML.
+`auth_request` against the session endpoint is the better version of this once you want a
+single source of truth for who is signed in.
 
 ## Smoke test
 
@@ -153,10 +154,10 @@ Then in a browser:
 5. Resize to a phone width: the booking modal is a full-height sheet, and the process and
    team rows swipe.
 
-## API contract
+## What the frontend expects from the API
 
-`BACKEND-GUIDE.md` is the reference: routes, payloads, and the status codes the UI already
-handles (401, 404, 409, 422, 503). Notable expectations from the current frontend:
+The pages handle 401, 404, 409, 422 and 503 and show their own state for each. Points
+where the frontend's expectations are easy to miss:
 
 - `shots[].span` is 1–6 with a free `w`/`h` ratio per shot.
 - Availability blocks are date **ranges**, not single dates.
@@ -164,3 +165,8 @@ handles (401, 404, 409, 422, 503). Notable expectations from the current fronten
   slot went while the form was open, and the UI recovers by refreshing.
 - Project responses should echo only server-owned fields (`id`, `slug`, `state`,
   timestamps) as authoritative — the CRM treats everything else as local until saved.
+- `heroFocus` and `cardFocus` are focal-point strings (`"40% 25%"`) that must survive a
+  PATCH and come back in the public payload. `HERO-FOCUS.md` has the detail.
+- The public payload needs the hero image's pixel dimensions (`heroW` / `heroH`, or
+  `assets.hero.w` / `.h`). Without them the brand case page cannot use the image's own
+  ratio and falls back to cropping at 21:10.

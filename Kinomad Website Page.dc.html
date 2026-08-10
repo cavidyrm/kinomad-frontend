@@ -61,7 +61,7 @@ body.dev.dragging #frame{cursor:grabbing}
 </style>
 </helmet>
 
-<header style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;width:min(330px,calc(100vw - 36px));display:grid;grid-template-rows:56px {{ navRows }};background:color-mix(in srgb,var(--nav,#0d1016) 62%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(241,239,231,0.1);overflow:hidden;transition:grid-template-rows 0.75s cubic-bezier(0.16,1,0.3,1)">
+<header style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;width:min(330px,calc(100vw - 36px));display:grid;grid-template-rows:56px {{ navRows }};background:color-mix(in srgb,var(--nav,#050505) 62%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(241,239,231,0.1);overflow:hidden;transition:grid-template-rows 0.75s cubic-bezier(0.16,1,0.3,1)">
   <div style="display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 8px 0 18px;box-sizing:border-box">
     <a href="Kinomad Landing.dc.html" style="font-weight:700;letter-spacing:-0.02em;font-size:17px;text-transform:uppercase;color:#F1EFE7" style-hover="color:#F1EFE7"><img src="assets/logo-light.svg" alt="Kinomad" style="width:24px;height:auto;display:block"></a>
     <button onClick="{{ toggleMenu }}" aria-label="Menu" aria-expanded="{{ menuAria }}" aria-controls="km-nav-menu" style="background:transparent;border:none;color:#F1EFE7;cursor:pointer;font-size:22px;line-height:1;padding:8px 12px;font-family:inherit">{{ menuIcon }}</button>
@@ -542,13 +542,9 @@ class Component extends DCLogic {
     const pA = this.props.accent ?? '#639392';
     const pN = this.props.navColor ?? '#050505';
     const pB = this.props.bgColor ?? '#1a1a1a';
-    if (this._pA !== undefined && this._pA !== pA) s('kinomad-accent', pA);
-    if (this._pN !== undefined && this._pN !== pN) s('kinomad-nav', pN);
-    if (this._pB !== undefined && this._pB !== pB) s('kinomad-bg', pB);
-    this._pA = pA; this._pN = pN; this._pB = pB;
-    let accent = g('kinomad-accent'); if (accent == null) { accent = pA; s('kinomad-accent', accent); }
-    let nav = g('kinomad-nav'); if (nav == null) { nav = pN; s('kinomad-nav', nav); }
-    let bg = g('kinomad-bg'); if (bg == null) { bg = pB; s('kinomad-bg', bg); }
+    const accent = pA;
+    const nav = pN;
+    const bg = pB;
     document.body.style.setProperty('--accent', accent);
     document.body.style.setProperty('--nav', nav);
     if (this.state.light) document.body.style.removeProperty('--bg');

@@ -1,42 +1,51 @@
 # Image focal points (`heroFocus`, `cardFocus`)
 
-Adds editor-chosen focal points for the two images the site crops, so a portrait or
-square upload crops around the part that matters instead of dead centre:
+Editor-chosen focal points for the two images the site crops, so a portrait or square
+upload crops around the part that matters instead of dead centre:
 
 | Field | Image | Cropped to | Appears on |
 | --- | --- | --- | --- |
 | `heroFocus` | Website case-study hero | 21:10 | `/website/<slug>` hero |
 | `cardFocus` | 3D & motion card image | 2:3 | Works grid card |
 
-The CRM side is already built and shipping. This document covers the two remaining
-pieces: persisting the fields in the API, and honouring them on the public pages.
-
-**Not in scope: the brand hero.** Brand case heroes are deliberately uncropped — they
-render at the image's own ratio — so they have no focal point. See §5.
+**Both halves are done and live.** The CRM renders the crop previews, `km-api.js` sends
+both fields on save and reads them back from the public payload, the two public pages
+apply them, and the API stores and returns them. §1–§2 below are kept as the reference
+spec for the contract, not as work outstanding.
 
 ---
 
-## 1. What already exists (no work needed)
+## Status
 
-`Kinomad CRM.dc.html` renders a crop preview under the relevant picker once an image is
-uploaded: 21:10 under the website hero, 2:3 under the 3D/motion card. Dragging in the
-preview sets a focal point, and the CRM writes it to the project record through the
-normal autosave:
+Done, nothing to do:
 
-```
-PATCH /api/projects/:id
-{ "heroFocus": "40% 25%" }
+- `Kinomad CRM.dc.html` — crop preview under the website hero (21:10) and the 3D/motion
+  card (2:3): drag to set the focal point, a note reporting how much is cropped, and a
+  **Center** reset. Built on one shared `_cropView(asset, field, ratio, label)`.
+- `km-api.js` — sends `heroFocus` / `cardFocus` on project save (passed through as opaque
+  strings, deliberately not parsed), and maps `heroFocus`, `cardFocus`, `heroW`, `heroH`
+  out of the public payload.
+- `Kinomad Website Page.dc.html` — real heroes render as `<img>` with
+  `object-position:{{ c.heroFocus }}`; `image-slot` stays for records with no uploaded
+  hero, which is what lets a design tool accept a dropped placeholder.
+- `Kinomad Works.dc.html` — same two-branch treatment on the 3D card, with
+  `object-position:{{ tp.cardFocus }}`.
+- `Kinomad Brand Page.dc.html` — hero renders at `aspect-ratio:{{ c.heroRatio }}`, derived
+  from `heroW`/`heroH`. Brand heroes are never cropped and have no focal point.
 
-PATCH /api/projects/:id
-{ "cardFocus": "50% 20%" }
-```
+- `kinomad-backend` — `hero_focus` / `card_focus` columns (migration `003_focal_points`),
+  both accepted on PATCH and returned in the admin and public payloads, malformed values
+  stored as `NULL` rather than rejected. WebP now decodes natively so `assets.hero.w/h` is
+  real; assets stored before that are measured once at startup.
 
-Both are independent and may arrive in the same or separate requests.
+Nothing outstanding. §1 and §2 below describe the contract as built.
 
-### Value format
+---
 
-Identical for both fields. A CSS `background-position` / `object-position` pair: two
-percentages, space separated, X then Y, each an integer 0–100 with a `%` suffix.
+## 1. Value format
+
+Both fields are a CSS `background-position` / `object-position` pair: two percentages,
+space separated, X then Y, each an integer 0–100 with a `%` suffix.
 
 ```
 "50% 50%"   centre (default)
@@ -46,8 +55,9 @@ percentages, space separated, X then Y, each an integer 0–100 with a `%` suffi
 - `0% 0%` is the top-left of the image, `100% 100%` the bottom-right.
 - Absent, empty, or unparseable means centre. Never fail a request over it.
 
-Treat it as an opaque string end to end. Do not normalise, round-trip through a
-struct of two floats, or reformat it — the frontend parses exactly this shape.
+Treat it as an opaque string end to end. Do not normalise, round-trip through a struct of
+two floats, or reformat it — both the CRM preview and the public pages parse exactly this
+shape.
 
 ---
 
@@ -68,8 +78,14 @@ Nullable, no default. `NULL` means centre.
 
 Add `heroFocus` and `cardFocus` to whatever allow-list the project PATCH handler uses.
 **This is the step that fails silently if missed** — the CRM will appear to save (the
-autosave indicator settles, the preview looks right) and the value will be gone on
-reload.
+autosave indicator settles, the preview looks right) and the value will be gone on reload.
+
+The CRM sends them through the normal autosave, independently or together:
+
+```
+PATCH /api/projects/:id
+{ "heroFocus": "40% 25%" }
+```
 
 Validation, if you validate at all — same pattern for both:
 
@@ -88,139 +104,34 @@ Include both in:
   the CRM reads them back to restore the marker positions;
 - the **public** project response used by the case-study and works pages.
 
-Omit the key or send `null` when unset; do not substitute `"50% 50%"` server-side —
-let the frontend apply its own default.
+Omit the key or send `null` when unset; do not substitute `"50% 50%"` server-side — the
+frontend applies its own default.
 
-### 2.4 One caution on the PATCH response
+### 2.4 Hero dimensions for the brand page
 
-The CRM merges only server-owned fields (`id`, `slug`, `state`, timestamps) from a
-save response back into its local state; everything else it treats as local until the
-user changes it. That means a focal point in the PATCH response is ignored while the
-form is open — deliberately, so a slow response can't overwrite a drag in progress.
-Both are read on load. No action needed; noted so the behaviour doesn't look like a bug.
+Separate from the focal points, and required for the brand case page to render an
+uncropped hero: the public payload must carry the hero image's pixel size — `heroW` and
+`heroH`, or `assets.hero.w` / `.h`, which `km-api.js` already maps. Without them every
+brand project falls back to 21:10 and crops, which is the bug this replaced.
 
-### 2.5 Do not crop server-side
+### 2.5 One caution on the PATCH response
+
+The CRM merges only server-owned fields (`id`, `slug`, `state`, timestamps) from a save
+response back into its local state; everything else it treats as local until the user
+changes it. A focal point in the PATCH response is therefore ignored while the form is
+open — deliberately, so a slow response cannot overwrite a drag in progress. Both are read
+on load. No action needed; noted so the behaviour does not look like a bug.
+
+### 2.6 Do not crop server-side
 
 Keep storing the original upload. The focal point is presentational and re-editable;
-baking the crop into the stored file makes it permanent and forces a re-upload to
-change. If you later add derivative sizes for performance, generate them from the
-original and keep the focal point as the positioning hint.
+baking the crop into the stored file makes it permanent and forces a re-upload to change.
+If you later add derivative sizes for performance, generate them from the original and
+keep the focal point as the positioning hint.
 
 ---
 
-## 3. Frontend — website case hero (`heroFocus`)
-
-In `Kinomad Website Page.dc.html`:
-
-```html
-<section data-screen-label="Website hero image" style="padding:0">
-  <div style="position:relative;width:100%;aspect-ratio:21/10;background:var(--card)">
-    <x-import component-from-global-scope="image-slot" from="./image-slot.js"
-      id="{{ c.heroId }}" src="{{ c.heroSrc }}" shape="rect" radius="0"
-      placeholder="{{ c.heroPh }}"
-      style="position:absolute;inset:0;width:100%;height:100%"
-      hint-size="100%,560px"></x-import>
-  </div>
-</section>
-```
-
-`image-slot` has no focal-point attribute and centre-crops. It is there so the design
-tool can accept dropped placeholder images on a project with no real hero yet — keep
-that path, and add a plain `<img>` for the case where a real hero exists.
-
-### 3.1 Template
-
-Replace the `<x-import>` line with two branches:
-
-```html
-    <sc-if value="{{ c.heroReal }}" hint-placeholder-val="{{ false }}">
-      <img src="{{ c.heroSrc }}" alt="{{ c.heroPh }}"
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ c.heroFocus }};display:block">
-    </sc-if>
-    <sc-if value="{{ c.heroSlot }}" hint-placeholder-val="{{ true }}">
-      <x-import component-from-global-scope="image-slot" from="./image-slot.js"
-        id="{{ c.heroId }}" src="{{ c.heroSrc }}" shape="rect" radius="0"
-        placeholder="{{ c.heroPh }}"
-        style="position:absolute;inset:0;width:100%;height:100%"
-        hint-size="100%,560px"></x-import>
-    </sc-if>
-```
-
-`object-position` in a `{{ }}` hole is correct here: it is a live per-record value, not
-a static token.
-
-### 3.2 Logic
-
-Where the case record `c` is assembled in `renderVals()`, add three derived values.
-`heroReal` must be true only for a hero that came from the API, so the built-in demo
-records keep using `image-slot`:
-
-```js
-const fromApi = !!(rec && rec.assets && rec.assets.hero && rec.assets.hero.url);
-c.heroReal  = fromApi;
-c.heroSlot  = !fromApi;
-c.heroFocus = (rec && rec.heroFocus) || '50% 50%';
-```
-
-Adjust the source of `rec` to match however that page currently maps an API project
-(the demo fallbacks have no `assets`, so they fall to `heroSlot` naturally).
-
----
-
-## 4. Frontend — 3D & motion card (`cardFocus`)
-
-In `Kinomad Works.dc.html`, the 3D section's card media:
-
-```html
-<div onMouseMove="{{ parallaxMove }}" onMouseLeave="{{ parallaxLeave }}"
-  style="position:relative;overflow:hidden;aspect-ratio:2/3;max-height:min(620px,calc(var(--vh,1svh) * 72));background:var(--card)">
-```
-
-Inside it, the image is mounted the same way as the hero. Apply the same two-branch
-treatment, with `object-position:{{ tp.cardFocus }}`, and derive the values in
-`_mapThree(c)` where each card record is built:
-
-```js
-const fromApi = !!(c && c.assets && c.assets.card && c.assets.card.url);
-return {
-  // …existing fields…
-  cardReal:  fromApi,
-  cardSlot:  !fromApi,
-  cardFocus: (c && c.cardFocus) || '50% 50%',
-};
-```
-
-Note the parallax handlers already transform this element on hover. `object-position`
-composes with that transform without conflict — do not move the parallax onto the
-`<img>`'s `object-position`.
-
----
-
-## 5. Brand hero is not cropped
-
-`Kinomad Brand Page.dc.html` renders its hero at the image's own ratio:
-
-```html
-<div style="position:relative;width:100%;aspect-ratio:{{ c.heroRatio }};background:var(--card)">
-```
-
-with
-
-```js
-const hw = c && c.heroW, hh = c && c.heroH;
-c.heroRatio = (hw && hh) ? (hw + '/' + hh) : (c.heroRatio || '21/10');
-```
-
-For that to work on real projects, the **public project payload must include the hero
-image's pixel dimensions** — `heroW` and `heroH`, or whatever the asset record already
-carries (`assets.hero.w` / `.h`), in which case map them on the frontend instead. Without
-them the page falls back to 21:10 and crops after all, which is the bug this replaced.
-
-The brand form in the CRM shows no crop preview, by design.
-
----
-
-## 6. Keep preview and page in step
+## 3. Keeping preview and page in step
 
 The CRM's previews use `background-position` on a `background-size:cover` box; the pages
 use `object-position` on an `object-fit:cover` image. These resolve identically for the
@@ -240,18 +151,16 @@ numbers and should be updated alongside.
 
 ---
 
-## 7. Test
+## 4. Test
 
-1. In the CRM, upload a tall portrait image as the hero of a draft **website** project.
-   The note under the preview should read something like
-   `1200×1800 · full width, 71% of the height is cropped`.
-2. Drag the focal point to the top of the preview. Wait for *saved*.
-3. Reload the CRM and reopen the project — the marker is where you left it.
-   *If it snapped back to centre, step 2.2 was missed.*
-4. Publish, open the public case page — the hero shows the top of the image, matching
-   the preview.
-5. Repeat 1–4 on a **3D/motion** project's card image, checking the Works grid card.
-6. Open a project whose images were never given focal points — both render centred.
-7. Upload a 16:9 hero to a **brand** project — the case page shows it uncropped at 16:9.
-8. Open a demo/unpublished project in the design tool — the `image-slot` placeholders
-   still accept a dropped image.
+1. CRM → a draft **website** project → upload a tall portrait hero. The note under the
+   preview reads something like `1200×1800 · full width, 71% of the height is cropped`.
+2. Drag the focal point to the top. Wait for *saved*.
+3. Reload and reopen the project — the marker is where you left it.
+   *If it snapped back to centre, §2.2 was missed.*
+4. Publish, open the public case page — the hero shows the top of the image, matching the
+   preview.
+5. Repeat on a **3D/motion** project's card image, checking the Works grid card.
+6. A project whose images were never given focal points renders centred.
+7. A **brand** project with a 16:9 hero shows uncropped at 16:9.
+   *If it renders 21:10, §2.4 was missed.*

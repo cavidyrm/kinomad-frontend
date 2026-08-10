@@ -113,13 +113,9 @@ class Component extends DCLogic {
     const pA = this.props.accent ?? '#639392';
     const pB = this.props.bgColor ?? '#1a1a1a';
     const pN = this.props.navColor ?? '#050505';
-    if (this._pA !== undefined && this._pA !== pA) s('kinomad-accent', pA);
-    if (this._pB !== undefined && this._pB !== pB) s('kinomad-bg', pB);
-    if (this._pN !== undefined && this._pN !== pN) s('kinomad-nav', pN);
-    this._pA = pA; this._pB = pB; this._pN = pN;
-    let accent = g('kinomad-accent'); if (accent == null) { accent = pA; s('kinomad-accent', accent); }
-    let bg = g('kinomad-bg'); if (bg == null) { bg = pB; s('kinomad-bg', bg); }
-    let nav = g('kinomad-nav'); if (nav == null) { nav = pN; s('kinomad-nav', nav); }
+    const accent = pA;
+    const bg = pB;
+    const nav = pN;
     document.body.style.setProperty('--accent', accent);
     document.body.style.setProperty('--bg', bg);
     document.body.style.setProperty('--nav', nav);
