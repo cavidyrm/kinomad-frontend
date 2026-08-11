@@ -1274,8 +1274,11 @@ class Component extends DCLogic {
         if (window.KMROUTES) KMROUTES.go('Kinomad Brand Page.dc.html', id);
         else window.location.href = 'Kinomad Brand Page.dc.html?project=' + id;
       },
-      brandEnter: (e) => this.setState({ hovBrand: e.currentTarget.dataset.brand }),
-      brandLeave: () => this.setState({ hovBrand: null }),
+      brandEnter: (e) => {
+        if (this._touch()) return;
+        this.setState({ hovBrand: e.currentTarget.dataset.brand });
+      },
+      brandLeave: () => { if (!this._touch()) this.setState({ hovBrand: null }); },
       backToTop: (e) => { e.preventDefault(); this.setState({ menuOpen: false }); this._sv().scrollTo({ top: 0, behavior: 'smooth' }); },
       parallaxMove: (e) => {
         const el = e.currentTarget.querySelector('[data-parallax]');

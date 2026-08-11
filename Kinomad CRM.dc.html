@@ -1227,7 +1227,8 @@ class Component extends DCLogic {
           const pub = p.state === 'published';
           const busy = s.pjBusy[p.id];
           const conf = s.pjConfirm === p.id;
-          const hero = (p.assets || {}).hero;
+          const as = p.assets || {};
+          const hero = as.hero || as.card || as.poster;
           return {
             id: p.id, type: p.type,
             name: p.name || 'Untitled project',
