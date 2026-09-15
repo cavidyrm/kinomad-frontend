@@ -285,7 +285,7 @@ body.dev.dragging #frame{cursor:grabbing}
       </div>
 
       <div data-r="bk-foot" style="display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px clamp(16px,2cqw,26px);border-top:1px solid rgba(241,239,231,0.12)">
-        <a data-r="bk-mail" href="mailto:Hello@Kinomadstudio.com" style="font-size:12px;letter-spacing:0.06em;font-weight:600;color:rgba(241,239,231,0.5)">or email us instead</a>
+        <a data-r="bk-mail" href="mailto:Hello@kinomadstudio.com" style="font-size:12px;letter-spacing:0.06em;font-weight:600;color:rgba(241,239,231,0.5)">or email us instead</a>
         <div data-r="bk-acts" style="display:flex;gap:10px">
           <sc-if value="{{ bkShowBack }}" hint-placeholder-val="{{ false }}">
             <button onClick="{{ bkBack }}" style="font-family:inherit;border:1px solid rgba(241,239,231,0.2);background:transparent;color:#F1EFE7;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 18px;cursor:pointer">Back</button>
@@ -312,7 +312,7 @@ body.dev.dragging #frame{cursor:grabbing}
     </div>
     <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:34%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(5,5,5,0.82) 0%,rgba(5,5,5,0.5) 45%,rgba(5,5,5,0) 100%)"></div>
     <div id="km-hero-title" style="position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;pointer-events:none;will-change:transform">
-      <h1 id="km-hero-h1" style="margin:0;padding:0 clamp(20px,4cqw,64px);font-size:clamp(52px,10.5cqw,200px);line-height:0.95;letter-spacing:-0.035em;font-weight:600;color:var(--fg);opacity:0;text-align:center;text-wrap:balance">Dreams made real<span style="color:var(--accent-ink)">.</span></h1>
+      <h1 id="km-hero-h1" style="margin:0;padding:0 clamp(20px,4cqw,64px);font-size:clamp(52px,10.5cqw,200px);line-height:0.95;letter-spacing:-0.035em;font-weight:600;color:var(--fg);opacity:0;text-align:center;text-wrap:balance">Personality, made visible<span style="color:var(--accent-ink)">.</span></h1>
     </div>
     <div style="position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:0 clamp(20px,4cqw,64px) 26px;font-size:13px;font-weight:500;color:rgba(241,239,231,0.88);text-shadow:0 1px 6px rgba(0,0,0,0.45);animation:km-hfade 1s ease 0.8s both">
       <span style="flex:1;text-align:left">©2026</span>
@@ -339,8 +339,8 @@ body.dev.dragging #frame{cursor:grabbing}
   </div>
   <div data-r="studio-grid" style="display:grid;grid-template-columns:minmax(200px,1fr) minmax(0,2.1fr);gap:clamp(32px,6cqw,100px);align-items:start">
     <div data-r="studio-side" style="align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;gap:18px">
-      <span style="font-size:clamp(96px,13cqw,220px);font-weight:700;letter-spacing:-0.04em;line-height:0.9">40+</span>
-      <span style="max-width:320px;font-size:clamp(17px,1.3cqw,21px);line-height:1.5;color:var(--mut);font-weight:500;text-wrap:pretty">Dreams brought to life: brand identities, websites and 3D worlds for founders and studios.</span>
+      <span style="font-size:clamp(96px,13cqw,220px);font-weight:700;letter-spacing:-0.04em;line-height:0.9">12</span>
+      <span style="max-width:320px;font-size:clamp(17px,1.3cqw,21px);line-height:1.5;color:var(--mut);font-weight:500;text-wrap:pretty">Live projects in two years: brand identities, websites and 3D worlds for founders and studios.</span>
     </div>
     <div id="studio-fill" ref="{{ fillRef }}" style="display:flex;flex-direction:column;gap:clamp(28px,3.5cqw,52px)">
       <p style="margin:0;font-size:clamp(28px,3.6cqw,54px);line-height:1.16;letter-spacing:-0.02em;font-weight:600"><sc-for list="{{ p1Words }}" as="w" hint-placeholder-count="3"><span style="display:inline-block;white-space:nowrap;margin-right:0.3em;color:{{ w.c }};opacity:{{ w.o }};transition:opacity 0.5s ease,color 0.5s ease"><sc-for list="{{ w.letters }}" as="l" hint-placeholder-count="4"><span style="position:relative;display:inline-block;clip-path:inset(0 -0.25em);height:1.16em;vertical-align:bottom"><span style="display:block;height:1.16em;visibility:hidden">{{ l.g0 }}</span><span style="position:absolute;top:0;left:0;right:0;text-align:center;transform:translateY({{ l.ty }});transition:transform 0.45s cubic-bezier(0.16,1,0.3,1)"><span style="display:block;height:1.16em">{{ l.g0 }}</span><span style="display:block;height:1.16em">{{ l.g1 }}</span><span style="display:block;height:1.16em">{{ l.g2 }}</span><span style="display:block;height:1.16em">{{ l.g3 }}</span></span></span></sc-for></span></sc-for></p>
@@ -461,11 +461,11 @@ body.dev.dragging #frame{cursor:grabbing}
       </div>
       <div style="height:6px;background:var(--line);transition:background 0.5s ease"></div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-top:16px">
-        <span style="font-size:19px;font-weight:600">Daniel Kim</span>
+        <span style="font-size:19px;font-weight:600">Ali Bargi</span>
         <span style="font-size:14px;color:var(--mut);font-weight:500">Founder, Creative Director</span>
       </div>
       <div style="display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 0.9s cubic-bezier(0.16,1,0.3,1),opacity 0.6s ease">
-        <p style="overflow:hidden;min-height:0;margin:12px 0 0;font-family:'Chillax',sans-serif;font-style:italic;font-size:16px;line-height:1.5;color:var(--mut);font-weight:500;text-wrap:pretty">"Every brief starts the same way: what does this dream look like when it's real?"</p>
+        <p style="overflow:hidden;min-height:0;margin:12px 0 0;font-family:'Chillax',sans-serif;font-style:italic;font-size:16px;line-height:1.5;color:var(--mut);font-weight:500;text-wrap:pretty">"Every brief starts the same way: who is this business when someone meets it for the first time?"</p>
       </div>
     </div>
     <div data-idx="1" onMouseEnter="{{ teamHover }}" onMouseLeave="{{ teamLeave }}" onClick="{{ teamTap }}" style="flex-grow:1;flex-basis:0;min-width:240px;display:flex;flex-direction:column;cursor:pointer;transition:flex-grow 0.9s cubic-bezier(0.16,1,0.3,1)">
@@ -474,8 +474,8 @@ body.dev.dragging #frame{cursor:grabbing}
       </div>
       <div style="height:6px;background:var(--line);transition:background 0.5s ease"></div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-top:16px">
-        <span style="font-size:19px;font-weight:600">Mara Sole</span>
-        <span style="font-size:14px;color:var(--mut);font-weight:500">Design Lead</span>
+        <span style="font-size:19px;font-weight:600">Pouya Asri</span>
+        <span style="font-size:14px;color:var(--mut);font-weight:500">Web Designer, 3D Artist</span>
       </div>
       <div style="display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 0.9s cubic-bezier(0.16,1,0.3,1),opacity 0.6s ease">
         <p style="overflow:hidden;min-height:0;margin:12px 0 0;font-family:'Chillax',sans-serif;font-style:italic;font-size:16px;line-height:1.5;color:var(--mut);font-weight:500;text-wrap:pretty">"Good design is invisible until you feel it. Then it's everything."</p>
@@ -487,8 +487,8 @@ body.dev.dragging #frame{cursor:grabbing}
       </div>
       <div style="height:6px;background:var(--line);transition:background 0.5s ease"></div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-top:16px">
-        <span style="font-size:19px;font-weight:600">Ezra Vane</span>
-        <span style="font-size:14px;color:var(--mut);font-weight:500">3D Artist</span>
+        <span style="font-size:19px;font-weight:600">Aaron Madden</span>
+        <span style="font-size:14px;color:var(--mut);font-weight:500">Marketing Chief</span>
       </div>
       <div style="display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 0.9s cubic-bezier(0.16,1,0.3,1),opacity 0.6s ease">
         <p style="overflow:hidden;min-height:0;margin:12px 0 0;font-family:'Chillax',sans-serif;font-style:italic;font-size:16px;line-height:1.5;color:var(--mut);font-weight:500;text-wrap:pretty">"If it doesn't exist yet, that's exactly where we start."</p>
@@ -521,13 +521,13 @@ body.dev.dragging #frame{cursor:grabbing}
   </div>
 </section>
 
-<section data-screen-label="Pricing" id="contact" style="padding:clamp(48px,7cqw,110px) clamp(20px,4cqw,64px) clamp(72px,10cqw,150px)">
+<section data-screen-label="Next step" id="contact" style="padding:clamp(48px,7cqw,110px) clamp(20px,4cqw,64px) clamp(72px,10cqw,150px)">
   <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line);padding:20px 0 clamp(48px,7cqw,110px)">
-    <h2 style="margin:0;font-size:clamp(36px,4.6cqw,76px);font-weight:700;letter-spacing:-0.015em;line-height:0.92;text-transform:uppercase">Pricing</h2>
+    <h2 style="margin:0;font-size:clamp(36px,4.6cqw,76px);font-weight:700;letter-spacing:-0.015em;line-height:0.92;text-transform:uppercase">Next step</h2>
   </div>
   <div style="display:flex;flex-direction:column;gap:22px;max-width:1100px">
-    <span style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600">Submit your project</span>
-    <h2 style="margin:0;font-size:clamp(32px,4.6cqw,68px);line-height:1.08;letter-spacing:-0.025em;font-weight:600;text-wrap:balance">Flexible engagement models designed to accommodate varying scales of ambition and complexity.</h2>
+    <span style="font-size:13px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600">Start here</span>
+    <h2 style="margin:0;font-size:clamp(32px,4.6cqw,68px);line-height:1.08;letter-spacing:-0.025em;font-weight:600;text-wrap:balance">Tell us what you are building. We will tell you what it takes.</h2>
     <div style="display:flex;margin-top:10px">
       <button onClick="{{ openBooking }}" class="km-cta" style="font-family:inherit;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;padding:15px 26px">Book a call <span style="font-size:16px">↗</span></button>
     </div>
@@ -539,7 +539,7 @@ body.dev.dragging #frame{cursor:grabbing}
 <footer data-r="foot" data-screen-label="Footer" style="position:sticky;bottom:0;z-index:0;background:#050505;color:#F1EFE7;padding:clamp(70px,9cqw,130px) 0 0;min-height:calc(var(--vh,1svh) * 100);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;animation:km-footrise 1s cubic-bezier(0.16,1,0.3,1) both;animation-timeline:view();animation-range:entry 0% entry 75%">
   <div style="position:relative;z-index:1;padding:0 1.2cqw;display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
     <div role="img" aria-label="Kinomad logo" style="width:clamp(56px,5cqw,84px);aspect-ratio:137/138;-webkit-mask:url('assets/logo-light.svg') center/contain no-repeat;mask:url('assets/logo-light.svg') center/contain no-repeat;background-image:linear-gradient(to top,var(--accent) 50%,#F1EFE7 50%);background-size:100% 200%;background-position:0 0;transition:background-position 0.6s cubic-bezier(0.16,1,0.3,1);cursor:pointer" style-hover="background-position:0 100%"></div>
-    <a href="mailto:Hello@Kinomadstudio.com" style="font-size:clamp(18px,1.8cqw,26px);font-weight:600;letter-spacing:-0.01em;color:#F1EFE7;border-bottom:1px solid rgba(241,239,231,0.3);align-self:flex-start;padding-bottom:4px">Hello@Kinomadstudio.com</a>
+    <div style="align-self:flex-start;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.2cqw,18px)"><a href="mailto:Hello@kinomadstudio.com" class="km-flink" style="font-size:clamp(18px,1.8cqw,26px);font-weight:600;letter-spacing:-0.01em;color:#F1EFE7;padding-bottom:4px">Hello@kinomadstudio.com</a><div style="display:flex;flex-wrap:wrap;justify-content:flex-start;gap:clamp(14px,1.6cqw,24px)"><a href="tel:+971504839038" class="km-flink" style="font-size:clamp(14px,1.2cqw,17px);font-weight:500;letter-spacing:-0.005em;color:rgba(241,239,231,0.7)">+971 50 483 9038</a><a href="https://wa.me/971504839038" target="_blank" rel="noopener" class="km-flink" style="font-size:clamp(14px,1.2cqw,17px);font-weight:500;letter-spacing:-0.005em;color:rgba(241,239,231,0.7)">WhatsApp &#8599;</a></div></div>
   </div>
   <div style="position:relative;z-index:1;padding:clamp(50px,7cqw,110px) 1.2cqw 16px;display:flex;flex-direction:column;gap:clamp(28px,4cqw,56px)">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
@@ -558,9 +558,9 @@ body.dev.dragging #frame{cursor:grabbing}
       <div style="text-align:right">© 2026,<br>All Rights Reserved</div>
     </div>
   </div>
-  <div aria-hidden="true" style="position:relative;z-index:1;height:0.78em;overflow:hidden;margin:0 0 clamp(20px,3cqw,48px);font-size:17.4cqw;line-height:1;font-weight:700;letter-spacing:-0.02em;color:#F1EFE7">
-    <div style="display:flex;justify-content:space-between;padding:0 1.2cqw;margin:0;transform:translateY(-0.1em)">
-      <span>K</span><span>I</span><span>N</span><span>O</span><span>M</span><span>A</span><span>D</span>
+  <div aria-hidden="true" style="position:relative;z-index:1;height:0.805em;overflow:hidden;margin:0 0 clamp(20px,3cqw,48px);font-size:17.4cqw;line-height:1;font-weight:700;letter-spacing:-0.02em;color:#F1EFE7">
+    <div style="display:flex;justify-content:space-between;padding:0 1.2cqw;margin:0;transform:translateY(-0.109em)">
+      <span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">K</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">I</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">N</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">O</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">M</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">A</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">D</span>
     </div>
   </div>
 </footer>
@@ -767,7 +767,7 @@ class Component extends DCLogic {
         availability: { get: () => Promise.resolve(def()) },
         bookings: {
           busy: () => Promise.resolve([]),
-          create: () => Promise.reject(Object.assign(new Error('The booking service is unreachable right now — please email hello@kinomadstudio.com and we’ll set the call up by hand.'), { status: 503 })),
+          create: () => Promise.reject(Object.assign(new Error('The booking service is unreachable right now — please email Hello@kinomadstudio.com and we’ll set the call up by hand.'), { status: 503 })),
         },
       };
     }
@@ -1219,7 +1219,7 @@ class Component extends DCLogic {
   _splitWords(text) {
     return text.split(/\s+/).map((t) => {
       const base = t.replace(/[^a-zA-Z]/g, '').toLowerCase();
-      return { t, acc: base === 'craft' || base === 'dream' };
+      return { t, acc: base === 'behave' || base === 'gap' };
     });
   }
 
@@ -1451,7 +1451,7 @@ class Component extends DCLogic {
 
   _procs() {
     const data = this._procData || (this._procData = [
-      { num: '01', name: 'Listen', desc: 'We start with your dream, not our portfolio.', imgId: 'proc-1', src: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600', ph: 'Process image, listen' },
+      { num: '01', name: 'Listen', desc: 'We start with your business, not our portfolio.', imgId: 'proc-1', src: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600', ph: 'Process image, listen' },
       { num: '02', name: 'Define', desc: 'Strategy, direction, one clear plan, agreed before we design.', imgId: 'proc-2', src: 'https://images.pexels.com/photos/3183170/pexels-photo-3183170.jpeg?auto=compress&cs=tinysrgb&w=1600', ph: 'Process image, define' },
       { num: '03', name: 'Craft', desc: 'Design, build, render. Obsessively, until it feels right.', imgId: 'proc-3', src: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1600', ph: 'Process image, craft' },
       { num: '04', name: 'Launch', desc: 'We ship, then stay close as it grows.', imgId: 'proc-4', src: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1600', ph: 'Process image, launch' },
@@ -1484,7 +1484,7 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const w1 = this._w1 || (this._w1 = this._splitWords('We are Kinomad, a studio where strategy meets craft. Every pixel, every frame, every letterform exists for one reason: to bring your dream closer to real.'));
+    const w1 = this._w1 || (this._w1 = this._splitWords('We are Kinomad, three people in Dubai. Most businesses know exactly what they do, and far less about how they should look, sound and behave the moment someone meets them. That gap is the work.'));
     const w2 = this._w2 || (this._w2 = this._splitWords('Web design, brand identity and 3D. One team, one obsession, from first sketch to launch.'));
     const N = w1.length + w2.length;
     const ramp = 8;
@@ -1530,27 +1530,27 @@ class Component extends DCLogic {
       return { letters, c: w.acc ? 'var(--accent-ink)' : 'inherit', o: (0.3 + 0.7 * x).toFixed(3) };
     };
     const faqData = this._faq || (this._faq = [
-      { q: 'What does a project cost?', a: 'Every dream is scoped individually. Identity projects typically start around €6k, websites around €10k. You get a clear, fixed quote after the first call, and it doesn\u2019t change unless the scope does.' },
-      { q: 'How long will it take?', a: 'Most projects run 4–8 weeks from kickoff to launch. A full brand plus website is closer to 10–12. We\u2019ll give you a real timeline before we start, and we keep it.' },
-      { q: 'How do we start?', a: 'Write to hello@kinomad.studio with a few lines about your dream. We\u2019ll set up a call, listen, and come back within a week with a plan and a quote.' },
+      { q: 'What does a project cost?', a: 'Every project is scoped on its own, so the number comes after the first call \u2014 fixed, in writing, before any work starts. No hourly billing, no line items you did not agree to.' },
+      { q: 'How long will it take?', a: 'Most projects run 4–8 weeks from kickoff to launch; a brand and website together is closer to 10–12. You get a real date before we start, and we tell you early if anything threatens it.' },
+      { q: 'How do we start?', a: 'Write to Hello@kinomadstudio.com with a few lines about what you are building. We set up a call, listen, and come back within a week with a plan and a quote.' },
       { q: 'Do you work with clients worldwide?', a: 'Yes. We\u2019re based in Dubai and work remotely with founders and studios everywhere. A timezone has never killed a good project.' },
-      { q: 'Can we take just one service?', a: 'Absolutely. Web, brand and 3D stand on their own. Take just the piece you need, or let us bring the whole dream together.' },
+      { q: 'Can we take just one service?', a: 'Yes. Brand, interface, 3D, marketing and engineering each stand on their own. Take the one piece you need, or hand us the whole thing.' },
     ]);
     const openFaq = this.state.openFaq;
     const svcData = this._svc || (this._svc = [
-      { num: '01', name: 'Brand strategy', count: '003', href: 'Kinomad Works.dc.html#brand', head: 'Shaping identities that resonate and endure', desc: 'From brand identity to visual systems, our strategic approach crafts cohesive narratives that define who you are and how you connect with your audience.', tags: 'BRAND IDENTITY / VISUAL SYSTEMS / ART DIRECTION / BRAND GUIDELINES / VERBAL IDENTITY' },
-      { num: '02', name: 'Interface design', count: '002', href: 'Kinomad Works.dc.html#websites', head: 'Designing experiences that inspire interaction', desc: 'Our interface design services blend aesthetics with functionality, creating intuitive digital experiences across websites, mobile apps, and platforms that users love to engage with.', tags: 'UI / UX DESIGN / WEBSITE DESIGN / MOBILE APPLICATIONS / DESIGN SYSTEMS / E-COMMERCE & PLATFORMS' },
-      { num: '03', name: 'Immersive & motion', count: '003', href: 'Kinomad Works.dc.html#three-d', head: 'Bringing imagination to life through movement and depth', desc: 'From photogrammetry to motion graphics, our immersive services create captivating visual experiences that transport audiences into new dimensions of storytelling.', tags: '3D EXPERIENCES / PHOTOGRAMMETRY / MOTION GRAPHICS / VIDEO EDITING / INTERACTIVE NARRATIVES' },
-      { num: '04', name: 'Marketing', count: '004', href: 'Kinomad Works.dc.html', head: 'Growing brands with campaigns that convert', desc: 'From launch strategy to always-on growth, our marketing services turn attention into traction, pairing sharp creative with data to reach the right people and move them to act.', tags: 'GROWTH STRATEGY / CAMPAIGNS / SOCIAL & CONTENT / SEO & PERFORMANCE / EMAIL & CRM' },
-      { num: '05', name: 'Engineering', count: '002', href: 'Kinomad Works.dc.html', head: 'Building robust foundations for digital excellence', desc: 'Our engineering services deliver full-stack solutions, technical optimization, and seamless integrations that power your digital presence with reliability and performance.', tags: 'FULL STACK SOLUTIONS / TECHNICAL SEO / PERFORMANCE OPTIMIZATION / CMS INTEGRATION / DIGITAL SIGNAGE' },
+      { num: '01', name: 'Brand strategy', count: '003', href: 'Kinomad Works.dc.html#brand', head: 'Who you are, before anyone asks', desc: 'We find the personality your business already has and make it hold still: name, voice, logo, type, colour, and the rules that keep it consistent after we leave.', tags: 'BRAND IDENTITY / VISUAL SYSTEMS / ART DIRECTION / BRAND GUIDELINES / VERBAL IDENTITY' },
+      { num: '02', name: 'Interface design', count: '002', href: 'Kinomad Works.dc.html#websites', head: 'Sites and apps people get on the first try', desc: 'We design the screens, put them in front of real people, and hand over a system your team can extend without calling us.', tags: 'UI / UX DESIGN / WEBSITE DESIGN / MOBILE APPLICATIONS / DESIGN SYSTEMS / E-COMMERCE & PLATFORMS' },
+      { num: '03', name: 'Immersive & motion', count: '003', href: 'Kinomad Works.dc.html#three-d', head: 'Things that move, and things you can walk around', desc: 'We model, light and render in 3D, scan real objects with photogrammetry, and cut the footage that sells them.', tags: '3D EXPERIENCES / PHOTOGRAMMETRY / MOTION GRAPHICS / VIDEO EDITING / INTERACTIVE NARRATIVES' },
+      { num: '04', name: 'Marketing', count: '004', href: 'Kinomad Works.dc.html', head: 'Attention you can measure', desc: 'We plan the launch, write the content, run the ads, and report what worked in numbers rather than adjectives.', tags: 'GROWTH STRATEGY / CAMPAIGNS / SOCIAL & CONTENT / SEO & PERFORMANCE / EMAIL & CRM' },
+      { num: '05', name: 'Engineering', count: '002', href: 'Kinomad Works.dc.html', head: 'The part that has to not break', desc: 'We build the back end, wire up the CMS, make it fast, and stay reachable after launch.', tags: 'FULL STACK SOLUTIONS / TECHNICAL SEO / PERFORMANCE OPTIMIZATION / CMS INTEGRATION / DIGITAL SIGNAGE' },
     ]);
     const worksLoading = !this._worksLoaded;
     const worksData = this._worksL || [];
     const wi = Math.min(this.state.workIdx, Math.max(0, worksData.length - 1));
     const mob = this._mobW();
     const works = worksData.map((w, i) => Object.assign({}, w, {
-      cw: (i === wi ? (mob ? 80 : 48) : (mob ? 52 : 30)) + 'cqw',
-      ch: (i === wi ? (mob ? 58 : 34) : (mob ? 38 : 22)) + 'cqw',
+      cw: (i === wi ? (mob ? 80 : 40) : (mob ? 52 : 25)) + 'cqw',
+      ch: (i === wi ? (mob ? 58 : 28) : (mob ? 38 : 18)) + 'cqw',
       op: i === wi ? '1' : '0.8',
     }));
     // Every field the meta row animates has to be a string, including in the

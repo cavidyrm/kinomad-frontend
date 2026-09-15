@@ -240,7 +240,7 @@ body.dev.dragging #frame{cursor:grabbing}
 <footer data-r="foot" data-screen-label="Footer" style="position:sticky;bottom:0;z-index:0;background:#050505;color:#F1EFE7;padding:clamp(70px,9cqw,130px) 0 0;min-height:calc(var(--vh,1svh) * 100);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;animation:km-footrise 1s cubic-bezier(0.16,1,0.3,1) both;animation-timeline:view();animation-range:entry 0% entry 75%">
   <div style="position:relative;z-index:1;padding:0 1.2cqw;display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
     <div role="img" aria-label="Kinomad logo" style="width:clamp(56px,5cqw,84px);aspect-ratio:137/138;-webkit-mask:url('assets/logo-light.svg') center/contain no-repeat;mask:url('assets/logo-light.svg') center/contain no-repeat;background-image:linear-gradient(to top,var(--accent) 50%,#F1EFE7 50%);background-size:100% 200%;background-position:0 0;transition:background-position 0.6s cubic-bezier(0.16,1,0.3,1);cursor:pointer" style-hover="background-position:0 100%"></div>
-    <a href="mailto:Hello@Kinomadstudio.com" style="font-size:clamp(18px,1.8cqw,26px);font-weight:600;letter-spacing:-0.01em;color:#F1EFE7;border-bottom:1px solid rgba(241,239,231,0.3);align-self:flex-start;padding-bottom:4px">Hello@Kinomadstudio.com</a>
+    <div style="align-self:flex-start;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.2cqw,18px)"><a href="mailto:Hello@kinomadstudio.com" class="km-flink" style="font-size:clamp(18px,1.8cqw,26px);font-weight:600;letter-spacing:-0.01em;color:#F1EFE7;padding-bottom:4px">Hello@kinomadstudio.com</a><div style="display:flex;flex-wrap:wrap;justify-content:flex-start;gap:clamp(14px,1.6cqw,24px)"><a href="tel:+971504839038" class="km-flink" style="font-size:clamp(14px,1.2cqw,17px);font-weight:500;letter-spacing:-0.005em;color:rgba(241,239,231,0.7)">+971 50 483 9038</a><a href="https://wa.me/971504839038" target="_blank" rel="noopener" class="km-flink" style="font-size:clamp(14px,1.2cqw,17px);font-weight:500;letter-spacing:-0.005em;color:rgba(241,239,231,0.7)">WhatsApp &#8599;</a></div></div>
   </div>
   <div style="position:relative;z-index:1;padding:clamp(50px,7cqw,110px) 1.2cqw 16px;display:flex;flex-direction:column;gap:clamp(28px,4cqw,56px)">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
@@ -259,9 +259,9 @@ body.dev.dragging #frame{cursor:grabbing}
       <div style="text-align:right">© 2026,<br>All Rights Reserved</div>
     </div>
   </div>
-  <div aria-hidden="true" style="position:relative;z-index:1;height:0.78em;overflow:hidden;margin:0 0 clamp(20px,3cqw,48px);font-size:17.4cqw;line-height:1;font-weight:700;letter-spacing:-0.02em;color:#F1EFE7">
-    <div style="display:flex;justify-content:space-between;padding:0 1.2cqw;margin:0;transform:translateY(-0.1em)">
-      <span>K</span><span>I</span><span>N</span><span>O</span><span>M</span><span>A</span><span>D</span>
+  <div aria-hidden="true" style="position:relative;z-index:1;height:0.805em;overflow:hidden;margin:0 0 clamp(20px,3cqw,48px);font-size:17.4cqw;line-height:1;font-weight:700;letter-spacing:-0.02em;color:#F1EFE7">
+    <div style="display:flex;justify-content:space-between;padding:0 1.2cqw;margin:0;transform:translateY(-0.109em)">
+      <span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">K</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">I</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">N</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">O</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">M</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">A</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">D</span>
     </div>
   </div>
 </footer>
@@ -679,8 +679,8 @@ class Component extends DCLogic {
           { imgId: 'three-d-solstice-s5', src: 'https://images.pexels.com/photos/6320/smartphone-vintage-technology-music.jpg?auto=compress&cs=tinysrgb&w=1000', ph: 'Controls, macro pass', span: 3, ratio: '4/3' },
         ],
         credits: [
-          { who: 'Ezra Vane', role: '3D & Lighting' },
-          { who: 'Daniel Kim', role: 'Art Direction' },
+          { who: 'Pouya Asri', role: '3D & Lighting' },
+          { who: 'Ali Bargi', role: 'Art Direction' },
         ],
       },
       {
@@ -697,8 +697,7 @@ class Component extends DCLogic {
           { imgId: 'three-d-terraforma-s4', src: 'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=1400', ph: 'Aerial context, seasonal study', span: 6, ratio: '2/1' },
         ],
         credits: [
-          { who: 'Ezra Vane', role: '3D & Environments' },
-          { who: 'Mara Sole', role: 'Design Lead' },
+          { who: 'Pouya Asri', role: '3D, Environments & Design' },
         ],
       },
       {
@@ -714,8 +713,8 @@ class Component extends DCLogic {
           { imgId: 'three-d-orbital-s3', src: 'https://images.pexels.com/photos/586063/pexels-photo-586063.jpeg?auto=compress&cs=tinysrgb&w=1800', ph: 'Satellite pass, orbit plate', span: 6, ratio: '21/9' },
         ],
         credits: [
-          { who: 'Ezra Vane', role: '3D, Animation & Edit' },
-          { who: 'Daniel Kim', role: 'Creative Direction' },
+          { who: 'Pouya Asri', role: '3D, Animation & Edit' },
+          { who: 'Ali Bargi', role: 'Creative Direction' },
         ],
       },
     ];
@@ -737,7 +736,7 @@ class Component extends DCLogic {
     const c = (loading ? null
       : (window.KMAPI && KMAPI.public ? KMAPI.public.matchCase(cases, pid) : cases.find((x) => x.id === pid || x.slug === pid)) || cases[0]
     ) || { credits: [], shots: [] };
-    const others = cases.filter((x) => x.id !== c.id && x.slug !== c.slug).map((x) => ({
+    const others = cases.filter((x) => x.id !== c.id && x.slug !== c.slug).slice(0, 4).map((x) => ({
       name: x.name, num: x.num, href: this._href('Kinomad Motion Page.dc.html', x.slug || x.id),
     }));
     const seg = (name) => (this.props.device || 'Desktop') === name

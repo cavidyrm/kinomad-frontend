@@ -82,6 +82,26 @@ variable set from the frame height.
 Card reveals respond to hover on pointer devices and to tap on any coarse-pointer device,
 at any width. The scrollbar appears after the hero sequence and leaves before the footer.
 
+## Copy and contact
+
+The studio's through-line is **how a business behaves the moment someone meets it** —
+"Personality, made visible." The earlier "dream" framing is gone from the site's copy, with one
+leftover: the 404 still reads "This dream doesn't exist, or it hasn't been made real yet"
+and needs a new line. Anywhere else, if it reappears it is a regression, not a revival.
+
+Two things are load-bearing and easy to break:
+
+- The studio statement's scroll-fill highlights specific words (`behave`, `gap`), matched
+  by `_splitWords()` in the Landing logic class. Rewriting that sentence without updating
+  the accent list silently drops the highlight.
+- The FAQ carries **no prices** — deliberately, at the client's request. The cost answer
+  sells the fixed written quote instead.
+
+Footer contact is email, phone and WhatsApp: `Hello@kinomadstudio.com`,
+`+971 50 483 9038`, `wa.me/971504839038`. All three use the `.km-flink` underline-draw,
+and the email has **no resting underline** — adding a `border-bottom` back alongside that
+class stacks two lines.
+
 ## Design tokens
 
 Set on `<body>` and shared by every page: `--accent` `#639392`, `--bg` `#1a1a1a`,
@@ -92,3 +112,7 @@ Gambetta. The same tweak panel (Preview / Brand) is on all nine pages.
 
 Pexels stock photography, `localhost` project URLs, reel videos (`assets/reels/*.mp4`, not
 in the repo), and `#` social links. Real project content is uploaded through the CRM.
+
+The team section and case-study credits are **no longer placeholder** — Ali Bargi, Pouya
+Asri and Aaron Madden are the real studio. The FAQ's 4–8 week timeline is inherited from
+placeholder copy and has not been confirmed.

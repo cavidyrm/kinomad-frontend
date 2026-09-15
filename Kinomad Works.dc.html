@@ -255,7 +255,7 @@ body.dev.dragging #frame{cursor:grabbing}
       </div>
 
       <div data-r="bk-foot" style="display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px clamp(16px,2cqw,26px);border-top:1px solid rgba(241,239,231,0.12)">
-        <a data-r="bk-mail" href="mailto:Hello@Kinomadstudio.com" style="font-size:12px;letter-spacing:0.06em;font-weight:600;color:rgba(241,239,231,0.5)">or email us instead</a>
+        <a data-r="bk-mail" href="mailto:Hello@kinomadstudio.com" style="font-size:12px;letter-spacing:0.06em;font-weight:600;color:rgba(241,239,231,0.5)">or email us instead</a>
         <div data-r="bk-acts" style="display:flex;gap:10px">
           <sc-if value="{{ bkShowBack }}" hint-placeholder-val="{{ false }}">
             <button onClick="{{ bkBack }}" style="font-family:inherit;border:1px solid rgba(241,239,231,0.2);background:transparent;color:#F1EFE7;font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 18px;cursor:pointer">Back</button>
@@ -274,13 +274,13 @@ body.dev.dragging #frame{cursor:grabbing}
 <main id="km-main" style="position:relative;z-index:1;background:var(--bg)">
 
 <section data-screen-label="Works header" style="padding:clamp(100px,14vh,170px) clamp(20px,4cqw,64px) clamp(40px,5cqw,72px)">
-  <h1 id="km-works-title" style="margin:0;display:flex;align-items:flex-end;justify-content:space-between;font-size:clamp(72px,20.5cqw,340px);line-height:0.78;letter-spacing:-0.045em;font-weight:700;text-transform:uppercase;animation:km-rise 1s cubic-bezier(0.16,1,0.3,1) both"><span style="flex:1;display:flex;justify-content:space-between;align-items:flex-end"><span>W</span><span>O</span><span>R</span><span>K</span><span>S</span></span></h1>
+  <h1 id="km-works-title" style="margin:0;display:flex;align-items:flex-end;justify-content:space-between;font-size:clamp(72px,20.5cqw,340px);line-height:0.78;letter-spacing:-0.045em;font-weight:700;text-transform:uppercase;animation:km-rise 1s cubic-bezier(0.16,1,0.3,1) both"><span style="flex:1;display:flex;justify-content:space-between;align-items:flex-end"><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.07em)">W</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.07em)">O</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.07em)">R</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.07em)">K</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.07em)">S</span></span></h1>
   <div style="border-top:2px solid var(--fg);margin-top:clamp(20px,2.6cqw,40px)"></div>
   <div data-r="wmeta" style="display:grid;grid-template-columns:minmax(120px,0.8fr) minmax(0,1.4fr) minmax(160px,1fr) auto;gap:clamp(24px,4cqw,72px);align-items:start;padding-top:18px;animation:km-rise 1s cubic-bezier(0.16,1,0.3,1) 0.15s both">
     <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600">Selected works · {{ totalCount }}</span>
     <div style="display:flex;flex-direction:column;gap:14px">
       <span style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--mut)">Why</span>
-      <p style="margin:0;max-width:440px;font-family:'Gambetta',serif;font-style:italic;font-size:15px;line-height:1.55;font-weight:500;color:var(--mut);text-wrap:pretty">Every project here started as someone's dream. Websites, brand identities and 3D worlds, carefully designed, built and shipped by Kinomad.</p>
+      <p style="margin:0;max-width:440px;font-family:'Gambetta',serif;font-style:italic;font-size:15px;line-height:1.55;font-weight:500;color:var(--mut);text-wrap:pretty">Every project here began as a business that needed a face. Websites, brand identities and 3D worlds, carefully designed, built and shipped by Kinomad.</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;align-items:flex-start">
       <a href="#websites">Websites · {{ webCountPad }}</a>
@@ -513,8 +513,8 @@ body.dev.dragging #frame{cursor:grabbing}
 </section>
 
 <section data-screen-label="Works CTA" style="padding:clamp(64px,10cqw,150px) clamp(20px,4cqw,64px);text-align:center;border-top:1px solid var(--line)">
-  <h2 style="margin:0;font-size:clamp(40px,7cqw,110px);line-height:0.98;letter-spacing:-0.03em;font-weight:700;text-transform:uppercase;animation:km-rise 1s cubic-bezier(0.2,0.7,0.2,1) both;animation-timeline:view();animation-range:entry 0% entry 45%">Dreaming of<br><span style="color:var(--accent-ink)">something?</span></h2>
-  <p style="margin:clamp(18px,2.4cqw,32px) auto 0;max-width:520px;font-size:clamp(16px,1.4cqw,20px);line-height:1.55;font-weight:500;color:var(--mut);text-wrap:pretty;animation:km-rise 1s cubic-bezier(0.2,0.7,0.2,1) both;animation-timeline:view();animation-range:entry 0% entry 45%">A brand, a website, a 3D world, whatever design you have in mind, ask us. No brief too early, no idea too rough.</p>
+  <h2 style="margin:0;font-size:clamp(40px,7cqw,110px);line-height:0.98;letter-spacing:-0.03em;font-weight:700;text-transform:uppercase;animation:km-rise 1s cubic-bezier(0.2,0.7,0.2,1) both;animation-timeline:view();animation-range:entry 0% entry 45%">Got something<br><span style="color:var(--accent-ink)">in mind?</span></h2>
+  <p style="margin:clamp(18px,2.4cqw,32px) auto 0;max-width:520px;font-size:clamp(16px,1.4cqw,20px);line-height:1.55;font-weight:500;color:var(--mut);text-wrap:pretty;animation:km-rise 1s cubic-bezier(0.2,0.7,0.2,1) both;animation-timeline:view();animation-range:entry 0% entry 45%">A brand, a website, a 3D world, whatever it is, ask us. No brief too early, no idea too rough.</p>
   <div style="display:flex;justify-content:center;margin-top:clamp(28px,4cqw,48px)">
     <button onClick="{{ openBooking }}" class="km-cta" style="font-family:inherit;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;padding:15px 26px">Book a call <span style="font-size:16px">↗</span></button>
   </div>
@@ -525,7 +525,7 @@ body.dev.dragging #frame{cursor:grabbing}
 <footer data-r="foot" data-screen-label="Footer" style="position:sticky;bottom:0;z-index:0;background:#050505;color:#F1EFE7;padding:clamp(70px,9cqw,130px) 0 0;min-height:calc(var(--vh,1svh) * 100);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;animation:km-footrise 1s cubic-bezier(0.16,1,0.3,1) both;animation-timeline:view();animation-range:entry 0% entry 75%">
   <div style="position:relative;z-index:1;padding:0 1.2cqw;display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
     <div role="img" aria-label="Kinomad logo" style="width:clamp(56px,5cqw,84px);aspect-ratio:137/138;-webkit-mask:url('assets/logo-light.svg') center/contain no-repeat;mask:url('assets/logo-light.svg') center/contain no-repeat;background-image:linear-gradient(to top,var(--accent) 50%,#F1EFE7 50%);background-size:100% 200%;background-position:0 0;transition:background-position 0.6s cubic-bezier(0.16,1,0.3,1);cursor:pointer" style-hover="background-position:0 100%"></div>
-    <a href="mailto:Hello@Kinomadstudio.com" style="font-size:clamp(18px,1.8cqw,26px);font-weight:600;letter-spacing:-0.01em;color:#F1EFE7;border-bottom:1px solid rgba(241,239,231,0.3);align-self:flex-start;padding-bottom:4px">Hello@Kinomadstudio.com</a>
+    <div style="align-self:flex-start;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(12px,1.2cqw,18px)"><a href="mailto:Hello@kinomadstudio.com" class="km-flink" style="font-size:clamp(18px,1.8cqw,26px);font-weight:600;letter-spacing:-0.01em;color:#F1EFE7;padding-bottom:4px">Hello@kinomadstudio.com</a><div style="display:flex;flex-wrap:wrap;justify-content:flex-start;gap:clamp(14px,1.6cqw,24px)"><a href="tel:+971504839038" class="km-flink" style="font-size:clamp(14px,1.2cqw,17px);font-weight:500;letter-spacing:-0.005em;color:rgba(241,239,231,0.7)">+971 50 483 9038</a><a href="https://wa.me/971504839038" target="_blank" rel="noopener" class="km-flink" style="font-size:clamp(14px,1.2cqw,17px);font-weight:500;letter-spacing:-0.005em;color:rgba(241,239,231,0.7)">WhatsApp &#8599;</a></div></div>
   </div>
   <div style="position:relative;z-index:1;padding:clamp(50px,7cqw,110px) 1.2cqw 16px;display:flex;flex-direction:column;gap:clamp(28px,4cqw,56px)">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
@@ -544,9 +544,9 @@ body.dev.dragging #frame{cursor:grabbing}
       <div style="text-align:right">© 2026,<br>All Rights Reserved</div>
     </div>
   </div>
-  <div aria-hidden="true" style="position:relative;z-index:1;height:0.78em;overflow:hidden;margin:0 0 clamp(20px,3cqw,48px);font-size:17.4cqw;line-height:1;font-weight:700;letter-spacing:-0.02em;color:#F1EFE7">
-    <div style="display:flex;justify-content:space-between;padding:0 1.2cqw;margin:0;transform:translateY(-0.1em)">
-      <span>K</span><span>I</span><span>N</span><span>O</span><span>M</span><span>A</span><span>D</span>
+  <div aria-hidden="true" style="position:relative;z-index:1;height:0.805em;overflow:hidden;margin:0 0 clamp(20px,3cqw,48px);font-size:17.4cqw;line-height:1;font-weight:700;letter-spacing:-0.02em;color:#F1EFE7">
+    <div style="display:flex;justify-content:space-between;padding:0 1.2cqw;margin:0;transform:translateY(-0.109em)">
+      <span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">K</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">I</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">N</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">O</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">M</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">A</span><span style="display:inline-block;will-change:transform;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-0.03em)">D</span>
     </div>
   </div>
 </footer>
