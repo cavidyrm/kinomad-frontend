@@ -61,7 +61,7 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)!
   </div>
 </sc-if>
 
-<sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
   <a href="#crm-main" class="km-skip">Skip to content</a>
 
   <header style="position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px clamp(20px,3cqw,48px);background:color-mix(in srgb,#050505 80%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);flex-wrap:wrap">
@@ -813,7 +813,8 @@ class Component extends DCLogic {
     const signedIn = (() => {
       try { const q = KMAPI.session.local(); return !!(q && q.token); } catch (_) { return false; }
     })();
-    if (this.props.previewSession !== false && !signedIn) {
+    const onHost = !!(window.KMROUTES && KMROUTES.deployed && KMROUTES.deployed());
+    if (this.props.previewSession !== false && !signedIn && !onHost) {
       this.setState(
         { booting: false, session: { email: 'preview@kinomadstudio.com', name: 'Preview', token: 'preview' } },
         () => this._bootData()

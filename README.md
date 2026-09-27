@@ -85,9 +85,9 @@ at any width. The scrollbar appears after the hero sequence and leaves before th
 ## Copy and contact
 
 The studio's through-line is **how a business behaves the moment someone meets it** —
-"Personality, made visible." The earlier "dream" framing is gone from the site's copy, with one
-leftover: the 404 still reads "This dream doesn't exist, or it hasn't been made real yet"
-and needs a new line. Anywhere else, if it reappears it is a regression, not a revival.
+"Personality, made visible." The earlier "dream" framing is gone from the site's own voice;
+the one remaining occurrence is inside the Nomad Air case study, where it describes that
+client's product. If it reappears in new copy it is a regression, not a revival.
 
 Two things are load-bearing and easy to break:
 

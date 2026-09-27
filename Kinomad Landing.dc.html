@@ -20,6 +20,8 @@
 <script>/* deploy safety: a relative path breaks on nested routes like /works/slug — retry from the site root */
 if(!window.KMAPI){var s=document.createElement('script');s.src='/km-api.js';s.onload=function(){window.dispatchEvent(new Event('kmapi-ready'));};document.head.appendChild(s);}</script>
 <style>
+/* Hidden until the logic resolves bookingDisplay; the inline value then wins. */
+[data-r="bk-wrap"]{display:none}
 html{scroll-behavior:smooth;scrollbar-width:none}
 ::-webkit-scrollbar{display:none;width:0}
 body{margin:0;--bg:#1a1a1a;--fg:#F1EFE7;--mut:rgba(241,239,231,0.55);--line:rgba(241,239,231,0.14);--card:#141922;--accent:#639392;--accent-ink:var(--accent);background:var(--bg);color:var(--fg);font-family:'General Sans',ui-sans-serif,system-ui,sans-serif;transition:background 0.5s ease,color 0.5s ease;-webkit-font-smoothing:antialiased}
@@ -457,7 +459,7 @@ body.dev.dragging #frame{cursor:grabbing}
   <div data-r="team-row" style="display:flex;flex-wrap:wrap;gap:clamp(16px,2cqw,28px);align-items:flex-start">
     <div data-idx="0" onMouseEnter="{{ teamHover }}" onMouseLeave="{{ teamLeave }}" onClick="{{ teamTap }}" style="flex-grow:1;flex-basis:0;min-width:240px;display:flex;flex-direction:column;cursor:pointer;transition:flex-grow 0.9s cubic-bezier(0.16,1,0.3,1)">
       <div style="width:100%;height:clamp(280px,27cqw,400px);overflow:hidden;background:var(--card);filter:grayscale(1);transition:filter 0.7s cubic-bezier(0.16,1,0.3,1),height 0.9s cubic-bezier(0.16,1,0.3,1)">
-        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-1" src="https://images.pexels.com/photos/13451104/pexels-photo-13451104.jpeg?auto=compress&cs=tinysrgb&w=1920" shape="rect" placeholder="Portrait, founder" style="width:100%;height:100%" hint-size="100%,320px"></x-import>
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-1" src="assets/team-ali-bargi.jpg" shape="rect" placeholder="Portrait, founder" style="width:100%;height:100%" hint-size="100%,320px"></x-import>
       </div>
       <div style="height:6px;background:var(--line);transition:background 0.5s ease"></div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-top:16px">
@@ -470,7 +472,7 @@ body.dev.dragging #frame{cursor:grabbing}
     </div>
     <div data-idx="1" onMouseEnter="{{ teamHover }}" onMouseLeave="{{ teamLeave }}" onClick="{{ teamTap }}" style="flex-grow:1;flex-basis:0;min-width:240px;display:flex;flex-direction:column;cursor:pointer;transition:flex-grow 0.9s cubic-bezier(0.16,1,0.3,1)">
       <div style="width:100%;height:clamp(280px,27cqw,400px);overflow:hidden;background:var(--card);filter:grayscale(1);transition:filter 0.7s cubic-bezier(0.16,1,0.3,1),height 0.9s cubic-bezier(0.16,1,0.3,1)">
-        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-2" src="https://images.pexels.com/photos/7675023/pexels-photo-7675023.jpeg?auto=compress&cs=tinysrgb&w=1920" shape="rect" placeholder="Portrait, design lead" style="width:100%;height:100%" hint-size="100%,320px"></x-import>
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-2" src="assets/team-pouya-asri.jpg" shape="rect" placeholder="Portrait, design lead" style="width:100%;height:100%" hint-size="100%,320px"></x-import>
       </div>
       <div style="height:6px;background:var(--line);transition:background 0.5s ease"></div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-top:16px">
@@ -483,7 +485,7 @@ body.dev.dragging #frame{cursor:grabbing}
     </div>
     <div data-idx="2" onMouseEnter="{{ teamHover }}" onMouseLeave="{{ teamLeave }}" onClick="{{ teamTap }}" style="flex-grow:1;flex-basis:0;min-width:240px;display:flex;flex-direction:column;cursor:pointer;transition:flex-grow 0.9s cubic-bezier(0.16,1,0.3,1)">
       <div style="width:100%;height:clamp(280px,27cqw,400px);overflow:hidden;background:var(--card);filter:grayscale(1);transition:filter 0.7s cubic-bezier(0.16,1,0.3,1),height 0.9s cubic-bezier(0.16,1,0.3,1)">
-        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-3" src="https://images.pexels.com/photos/7315755/pexels-photo-7315755.jpeg?auto=compress&cs=tinysrgb&w=1920" shape="rect" placeholder="Portrait, 3D artist" style="width:100%;height:100%" hint-size="100%,320px"></x-import>
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="team-3" src="assets/team-aaron-madden.jpg" shape="rect" placeholder="Portrait, 3D artist" style="width:100%;height:100%" hint-size="100%,320px"></x-import>
       </div>
       <div style="height:6px;background:var(--line);transition:background 0.5s ease"></div>
       <div style="display:flex;flex-direction:column;gap:4px;margin-top:16px">
