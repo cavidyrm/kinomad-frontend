@@ -1201,16 +1201,15 @@ class Component extends DCLogic {
     const frame = document.getElementById('frame');
     const narrow = frame && frame.clientWidth <= 780;
     if (!narrow) {
-      card.style.flexGrow = on ? '1.7' : '1';
-      for (const sib of card.parentElement.children) {
-        if (sib !== card) sib.style.flexGrow = on ? '0.85' : '1';
-      }
+      // Widths stay equal; the hovered card opens downward so the portrait
+      // shows more of itself instead of being cropped into a landscape.
+      for (const sib of card.parentElement.children) sib.style.flexGrow = '1';
     } else {
       card.style.flexGrow = '1';
       for (const sib of card.parentElement.children) sib.style.flexGrow = '1';
     }
     if (kids[0]) {
-      kids[0].style.height = !narrow && on ? 'clamp(300px,29cqw,430px)' : 'clamp(280px,27cqw,400px)';
+      kids[0].style.height = !narrow && on ? 'clamp(360px,36cqw,540px)' : 'clamp(280px,27cqw,400px)';
       kids[0].style.filter = on ? 'grayscale(0)' : 'grayscale(1)';
     }
     if (kids[1]) kids[1].style.background = on ? 'var(--accent)' : 'var(--line)';
